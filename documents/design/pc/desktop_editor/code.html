@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#424848",
+                    "surface-container-lowest": "#070f12",
+                    "surface-container-low": "#151d20",
+                    "on-tertiary": "#002e6a",
+                    "secondary-fixed-dim": "#ffb95f",
+                    "primary-container": "#1a2c2e",
+                    "surface-bright": "#323a3e",
+                    "on-secondary-fixed": "#2a1700",
+                    "on-error": "#690005",
+                    "surface-tint": "#b6cacc",
+                    "secondary-fixed": "#ffddb8",
+                    "surface-container-high": "#232b2e",
+                    "primary": "#b6cacc",
+                    "outline": "#8c9292",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "tertiary": "#adc6ff",
+                    "surface-container-highest": "#2e3639",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "on-tertiary-container": "#4c8dff",
+                    "error": "#ffb4ab",
+                    "primary-container": "#1a2c2e",
+                    "on-primary-container": "#809496",
+                    "on-background": "#dbe4e8",
+                    "surface-container": "#192124",
+                    "on-surface": "#dbe4e8",
+                    "primary-fixed": "#d2e6e8",
+                    "on-primary": "#213335",
+                    "on-secondary-container": "#5b3800",
+                    "surface-variant": "#2e3639",
+                    "on-tertiary-fixed-variant": "#004395",
+                    "background": "#0d1518",
+                    "error-container": "#93000a",
+                    "surface": "#0d1518",
+                    "on-primary-fixed-variant": "#384a4c",
+                    "surface-dim": "#0d1518",
+                    "tertiary-container": "#00275c",
+                    "inverse-primary": "#4f6264",
+                    "inverse-on-surface": "#2a3235",
+                    "tertiary-fixed": "#d8e2ff",
+                    "on-tertiary-fixed": "#001a42",
+                    "inverse-surface": "#dbe4e8",
+                    "secondary": "#ffb95f",
+                    "on-secondary": "#472a00",
+                    "on-error-container": "#ffdad6",
+                    "on-surface-variant": "#c2c7c8",
+                    "on-primary-fixed": "#0c1e20",
+                    "secondary-container": "#ee9800"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "40px",
+                    "gutter": "20px",
+                    "unit": "4px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "container-padding": "32px"
+            },
+            "fontFamily": {
+                    "h2-editorial": ["Newsreader"],
+                    "ui-main": ["Inter"],
+                    "h1-display": ["Inter"],
+                    "body-reading": ["Newsreader"],
+                    "ui-label": ["Inter"],
+                    "ui-caption": ["Inter"]
+            },
+            "fontSize": {
+                    "h2-editorial": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "ui-main": ["15px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "h1-display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-reading": ["19px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "ui-label": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "ui-caption": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(26, 44, 46, 0.6);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        ::selection {
+            background: rgba(182, 202, 204, 0.3);
+            color: #b6cacc;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(182, 202, 204, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-ui-main selection:bg-primary/20 overflow-hidden h-screen flex">
+<!-- Left Pane: SideNavBar -->
+<aside class="h-screen w-64 border-r border-white/10 bg-[#1A2C2E]/60 backdrop-blur-3xl flex flex-col py-8 px-4 shadow-[20px_0_40px_rgba(26,44,46,0.15)] z-40 shrink-0">
+<div class="mb-10 px-2 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-lg">shrine</span>
+</div>
+<div>
+<h1 class="text-lg font-bold tracking-tighter text-white">Sanctuary</h1>
+<p class="text-ui-caption text-on-primary-container leading-none">Personal Vault</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1 custom-scrollbar overflow-y-auto">
+<div class="px-3 py-2 text-on-primary-container text-ui-label flex items-center justify-between mb-2">
+                LIBRARY
+                <span class="material-symbols-outlined text-sm">add</span>
+</div>
+<a class="flex items-center gap-3 bg-white/5 text-primary font-medium rounded-lg px-3 py-2 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="text-sm tracking-wide font-light">Drafts</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-slate-200 hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="text-sm tracking-wide font-light">Notebooks</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-slate-200 hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+<span class="text-sm tracking-wide font-light">Knowledge Graph</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-slate-200 hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="text-sm tracking-wide font-light">Favorites</span>
+</a>
+<div class="pt-8 px-3 py-2 text-on-primary-container text-ui-label mb-2">NOTEBOOKS</div>
+<a class="flex items-center gap-3 text-slate-400 hover:text-slate-200 hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-primary/40">folder</span>
+<span class="text-sm tracking-wide font-light">Neuroscience</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-slate-200 hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-primary/40">folder</span>
+<span class="text-sm tracking-wide font-light">Architecture</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-white/5 pt-4">
+<a class="flex items-center gap-3 text-slate-400 hover:text-slate-200 hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm tracking-wide font-light">Settings</span>
+</a>
+<div class="flex items-center gap-3 px-3 py-4 mt-2">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/10 bg-surface-container-highest">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A cinematic, high-detail portrait of a creative professional in soft, low-key lighting. The environment is a minimalist studio with deep shadows and subtle emerald reflections on a glass surface nearby. The style is moody and intellectual, emphasizing a sense of focused calm and creative depth in a high-end digital sanctuary workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAANArMrn1--yIfw86SqLfe4gYi4tziKasZgkieKvLHZDAcBkKhOAH3BOTYJee97Uq6--CdzSg7kYlKXDAKEXlFL2jcYwp-ZZBZQlRjlzpIdEKrxIzkcT1TtYs5JXUXYJdh_2OhlRF4iFbXIp8JU1xNebCxAaHPzYPTIBSC1nQMMTn_8XkWxWzsU-BolNFfii2ET846m9xWbGqrabuMeGAUreZ2u14fW71PTIN-9WdQzzOnHi7pYnQdeP81lu-lUTV5oS-zO3Yy_fIX"/>
+</div>
+<div class="overflow-hidden">
+<p class="text-sm font-medium text-white truncate">Julian Thorne</p>
+<p class="text-[10px] text-on-primary-container uppercase tracking-widest">Pro Tier</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Editor Content Area -->
+<main class="flex-1 relative flex flex-col items-center bg-background overflow-hidden">
+<!-- TopAppBar Contextual -->
+<header class="w-full px-8 h-16 flex justify-between items-center z-10">
+<div class="flex items-center gap-4 text-ui-label text-slate-500 font-semibold uppercase tracking-widest">
+<span class="hover:text-primary transition-colors cursor-pointer">Workspace</span>
+<span class="text-slate-700">/</span>
+<span class="text-white border-b border-primary pb-1">Deep Work</span>
+<span class="text-slate-700">/</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Notes</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-500 hover:text-white cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-slate-500 hover:text-white cursor-pointer" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+</header>
+<!-- Focus Bar (TopAppBar Variant) -->
+<div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 flex items-center px-6 py-2 bg-[#1A2C2E]/80 backdrop-blur-2xl rounded-full border border-white/10 shadow-2xl shadow-black/50 gap-6">
+<button class="text-primary flex items-center gap-1 hover:bg-white/5 px-2 py-1 rounded-md transition-all duration-200">
+<span class="material-symbols-outlined text-sm" data-icon="title">title</span>
+<span class="text-sm font-medium">Heading</span>
+</button>
+<div class="w-px h-4 bg-white/10"></div>
+<button class="text-slate-300 hover:text-primary hover:bg-white/5 p-1 rounded-md transition-all duration-200">
+<span class="material-symbols-outlined text-sm" data-icon="format_bold">format_bold</span>
+</button>
+<button class="text-slate-300 hover:text-primary hover:bg-white/5 p-1 rounded-md transition-all duration-200">
+<span class="material-symbols-outlined text-sm" data-icon="format_italic">format_italic</span>
+</button>
+<button class="text-slate-300 hover:text-primary hover:bg-white/5 p-1 rounded-md transition-all duration-200">
+<span class="material-symbols-outlined text-sm" data-icon="link">link</span>
+</button>
+<button class="text-slate-300 hover:text-primary hover:bg-white/5 p-1 rounded-md transition-all duration-200">
+<span class="material-symbols-outlined text-sm" data-icon="format_list_bulleted">format_list_bulleted</span>
+</button>
+<div class="w-px h-4 bg-white/10"></div>
+<button class="bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-semibold hover:bg-primary/20 transition-all">
+                Publish
+            </button>
+</div>
+<!-- Editor Canvas -->
+<div class="w-full max-w-[720px] flex-1 overflow-y-auto custom-scrollbar px-container-padding py-24 scroll-smooth">
+<header class="mb-12">
+<div class="flex items-center gap-3 mb-6">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase">Research</span>
+<span class="text-ui-caption text-slate-500 italic">Created Sept 12, 2024</span>
+</div>
+<h2 class="font-h1-display text-h1-display text-white mb-4">The Architecture of Long-Term Potentiation</h2>
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-surface-container-highest rounded text-ui-caption text-secondary border border-secondary/20">#neuroscience</span>
+<span class="px-2 py-0.5 bg-surface-container-highest rounded text-ui-caption text-primary border border-primary/20">#memory-systems</span>
+</div>
+</header>
+<article class="font-body-reading text-body-reading text-on-surface leading-relaxed space-y-8">
+<p class="first-letter:text-5xl first-letter:font-h2-editorial first-letter:mr-3 first-letter:float-left first-letter:text-primary">At its core, Long-Term Potentiation (LTP) represents the synaptic substrate of memory—a persistent strengthening of synapses based on recent patterns of activity. These patterns of synaptic activity produce a long-lasting increase in signal transmission between two neurons.</p>
+<p>The molecular mechanisms underlying LTP are as elegant as they are complex. It begins with the <span class="text-primary border-b border-primary/30 cursor-pointer">NMDA receptor</span>, which acts as a coincidence detector. Unlike most receptors, it only activates when the postsynaptic cell is already depolarized and glutamate is present in the synaptic cleft.</p>
+<div class="my-12 rounded-2xl overflow-hidden border border-white/5 group relative">
+<img alt="Synaptic Visualization" class="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A highly stylized, artistic 3D visualization of a neural synapse. Glowing emerald and electric blue particles flow across a gap between two organic, crystalline structures representing neurons. The lighting is ethereal and bioluminescent, set against a deep, dark void of space, creating a sense of scientific wonder and intellectual clarity within a digital sanctuary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbxQxP0NWRuUqEWox2pMsBovfqaX6TnDsOfIT7rfWDDRB9Dwl_A49xYVMSgOWtLNxp5eecRo_cONfGWXvF_thdojXGMobe6Yhuvg_Q1aJrsKdouSWD0pPrf9gsxDFrEcSdemUisP4K8oHWCJJj3aRlZRnYhdgKDZFYQGmW-ZHogkoBPAv_RPWoxf5SPOUasiihyfFDwcA2-GTlz-Fj3jj_fIBTjpsgSKu0Jt6CXS9ICSoqX8GBkdwvYd5hTBNgPisEnA5HmBMwB68E"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+<p class="absolute bottom-4 left-6 text-ui-caption text-slate-300 italic">Fig 1.1: Post-synaptic density reconstruction under high-fidelity simulation.</p>
+</div>
+<h3 class="font-h2-editorial text-h2-editorial text-primary mt-12 mb-4">The Persistence Problem</h3>
+<p>How does a protein-based structure, which typically turns over in hours or days, maintain a memory for decades? This biological paradox led researchers to discover the role of <span class="bg-secondary/10 text-secondary-fixed px-1 rounded">PKM-zeta</span>, a continuously active kinase that serves as a molecular 'engine' for synaptic maintenance.</p>
+<ul class="space-y-4 list-none pl-4 border-l-2 border-primary/20">
+<li class="relative pl-6">
+<span class="absolute left-0 top-3 w-2 h-2 rounded-full bg-primary/40"></span>
+<span class="font-medium text-white">Induction:</span> The brief burst of high-frequency stimulation.
+                    </li>
+<li class="relative pl-6">
+<span class="absolute left-0 top-3 w-2 h-2 rounded-full bg-primary/40"></span>
+<span class="font-medium text-white">Expression:</span> The increase in synaptic strength during the first hour.
+                    </li>
+<li class="relative pl-6">
+<span class="absolute left-0 top-3 w-2 h-2 rounded-full bg-primary/40"></span>
+<span class="font-medium text-white">Maintenance:</span> The persistent changes lasting hours, days, or lifetimes.
+                    </li>
+</ul>
+</article>
+<footer class="mt-24 pt-8 border-t border-white/5 opacity-50 text-ui-caption">
+<p>Word Count: 1,422   |   Last Synced: 2 minutes ago</p>
+</footer>
+</div>
+</main>
+<!-- Right Pane: Backlinks & Outline -->
+<aside class="w-72 border-l border-white/10 glass-panel h-screen flex flex-col p-6 gap-8 z-40 shrink-0">
+<section>
+<div class="flex items-center justify-between mb-4">
+<h4 class="text-ui-label text-slate-400 uppercase tracking-widest">Outline</h4>
+<span class="material-symbols-outlined text-slate-600 text-sm">unfold_more</span>
+</div>
+<nav class="space-y-3">
+<a class="block text-ui-caption text-primary hover:translate-x-1 transition-transform" href="#">Architecture of LTP</a>
+<a class="block text-ui-caption text-slate-500 hover:text-slate-300 pl-4 border-l border-white/5 transition-all" href="#">The Persistence Problem</a>
+<a class="block text-ui-caption text-slate-500 hover:text-slate-300 pl-4 border-l border-white/5 transition-all" href="#">Molecular Engines</a>
+<a class="block text-ui-caption text-slate-500 hover:text-slate-300 pl-4 border-l border-white/5 transition-all" href="#">Experimental Evidence</a>
+</nav>
+</section>
+<section class="flex-1 overflow-hidden flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<h4 class="text-ui-label text-slate-400 uppercase tracking-widest">Backlinks (4)</h4>
+<span class="material-symbols-outlined text-slate-600 text-sm">link</span>
+</div>
+<div class="space-y-4 custom-scrollbar overflow-y-auto pr-2">
+<!-- Backlink Card -->
+<div class="p-3 rounded-xl bg-white/5 border border-white/5 hover:border-primary/30 transition-all cursor-pointer group">
+<p class="text-ui-label text-primary mb-1">Synaptic Plasticity</p>
+<p class="text-ui-caption text-slate-400 line-clamp-2 leading-tight">"...the most studied form of plasticity remains the <span class="text-primary/70">LTP</span> framework in the hippocampus..."</p>
+</div>
+<div class="p-3 rounded-xl bg-white/5 border border-white/5 hover:border-primary/30 transition-all cursor-pointer group">
+<p class="text-ui-label text-primary mb-1">Hebbian Theory</p>
+<p class="text-ui-caption text-slate-400 line-clamp-2 leading-tight">"Neurons that fire together, wire together. This is the biological basis for..."</p>
+</div>
+<div class="p-3 rounded-xl bg-white/5 border border-white/5 hover:border-primary/30 transition-all cursor-pointer group">
+<p class="text-ui-label text-primary mb-1">Learning Systems</p>
+<p class="text-ui-caption text-slate-400 line-clamp-2 leading-tight">"A comparative study of machine learning backpropagation vs biological..."</p>
+</div>
+</div>
+</section>
+<section class="mt-auto">
+<div class="h-32 w-full rounded-2xl bg-gradient-to-br from-primary-container to-background border border-white/10 p-4 relative overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,rgba(182,202,204,1),transparent_70%)] group-hover:scale-150 transition-transform duration-1000"></div>
+<p class="text-ui-label text-white font-bold relative z-10">Expand Your Mind</p>
+<p class="text-ui-caption text-on-primary-container mt-1 relative z-10">Try Knowledge Graph visualization for this note.</p>
+<span class="material-symbols-outlined absolute bottom-4 right-4 text-primary text-xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</section>
+</aside>
+</body></html>

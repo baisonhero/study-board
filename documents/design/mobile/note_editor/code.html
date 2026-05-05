@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#93000a",
+                    "inverse-primary": "#4f6264",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "surface-container-high": "#232b2e",
+                    "on-tertiary": "#002e6a",
+                    "secondary-fixed": "#ffddb8",
+                    "on-surface": "#dbe4e8",
+                    "on-error-container": "#ffdad6",
+                    "outline-variant": "#424848",
+                    "inverse-on-surface": "#2a3235",
+                    "surface-container-highest": "#2e3639",
+                    "surface-container-low": "#151d20",
+                    "on-error": "#690005",
+                    "surface-container": "#192124",
+                    "primary-fixed": "#d2e6e8",
+                    "on-secondary-fixed": "#2a1700",
+                    "secondary-fixed-dim": "#ffb95f",
+                    "on-primary-fixed": "#0c1e20",
+                    "primary-fixed-dim": "#b6cacc",
+                    "on-background": "#dbe4e8",
+                    "outline": "#8c9292",
+                    "inverse-surface": "#dbe4e8",
+                    "surface-container-lowest": "#070f12",
+                    "surface-bright": "#323a3e",
+                    "tertiary": "#adc6ff",
+                    "on-tertiary-fixed-variant": "#004395",
+                    "on-tertiary-container": "#4c8dff",
+                    "on-tertiary-fixed": "#001a42",
+                    "secondary-container": "#ee9800",
+                    "secondary": "#ffb95f",
+                    "on-primary-container": "#809496",
+                    "on-secondary-container": "#5b3800",
+                    "primary": "#b6cacc",
+                    "surface": "#0d1518",
+                    "background": "#0d1518",
+                    "on-primary": "#213335",
+                    "primary-container": "#1a2c2e",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed-variant": "#384a4c",
+                    "on-secondary": "#472a00",
+                    "on-surface-variant": "#c2c7c8",
+                    "surface-dim": "#0d1518",
+                    "tertiary-fixed": "#d8e2ff",
+                    "surface-variant": "#2e3639",
+                    "surface-tint": "#b6cacc",
+                    "tertiary-container": "#00275c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "32px",
+                    "xl": "40px",
+                    "unit": "4px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "gutter": "20px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "h2-editorial": ["Newsreader"],
+                    "body-reading": ["Newsreader"],
+                    "h1-display": ["Inter"],
+                    "ui-label": ["Inter"],
+                    "ui-main": ["Inter"],
+                    "ui-caption": ["Inter"]
+            },
+            "fontSize": {
+                    "h2-editorial": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "body-reading": ["19px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h1-display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "ui-label": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "ui-main": ["15px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "ui-caption": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(13, 21, 24, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .writing-canvas {
+            max-width: 720px;
+        }
+        .bg-texture {
+            background-image: radial-gradient(circle at 50% 50%, rgba(182, 202, 204, 0.05) 0%, transparent 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-ui-main bg-texture selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Top AppBar (from JSON guidance) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-slate-950/40 backdrop-blur-2xl border-b border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-emerald-500 hover:bg-white/5 transition-all duration-500 ease-out active:scale-95 p-2 rounded-full">menu</button>
+<div class="flex items-center text-slate-400 font-ui-label text-ui-label tracking-wide uppercase">
+<span>Psychology</span>
+<span class="material-symbols-outlined text-[14px] mx-1 opacity-40">chevron_right</span>
+<span class="text-on-surface">Memory Systems</span>
+</div>
+</div>
+<div class="text-xl font-medium tracking-widest text-emerald-50 dark:text-emerald-100 font-h1-display">Sanctuary</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-emerald-500 hover:bg-white/5 transition-all duration-500 ease-out active:scale-95 p-2 rounded-full">share</button>
+<button class="material-symbols-outlined text-emerald-500 hover:bg-white/5 transition-all duration-500 ease-out active:scale-95 p-2 rounded-full">account_circle</button>
+</div>
+</header>
+<main class="pt-24 pb-32 flex justify-center px-lg">
+<div class="writing-canvas w-full animate-in fade-in duration-1000">
+<!-- Metadata Header -->
+<div class="mb-lg flex flex-wrap gap-sm">
+<span class="px-3 py-1 rounded-full bg-primary-container text-primary text-ui-caption font-ui-caption">Cognitive Science</span>
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-ui-caption font-ui-caption">Active Recall</span>
+<span class="px-3 py-1 rounded-full border border-outline/20 text-on-surface-variant text-ui-caption font-ui-caption italic">Last edited 2m ago</span>
+</div>
+<!-- Title Area -->
+<header class="mb-xl">
+<h1 class="text-h1-display font-h1-display text-on-surface leading-tight mb-md">
+                    The Architecture of Long-Term Potentiation
+                </h1>
+<div class="h-1 w-24 bg-gradient-to-r from-emerald-500/50 to-transparent rounded-full"></div>
+</header>
+<!-- Editor Body -->
+<article class="space-y-lg text-body-reading font-body-reading text-on-surface leading-relaxed">
+<p class="first-letter:text-5xl first-letter:font-h2-editorial first-letter:mr-2 first-letter:float-left">
+                    At the heart of our ability to learn and remember lies a persistent strengthening of synapses based on recent patterns of activity. These are patterns that create a physiological bridge between the ephemeral and the permanent.
+                </p>
+<h2 class="text-h2-editorial font-h2-editorial mt-xl mb-md border-b border-outline-variant/30 pb-sm">The Hebbian Postulate</h2>
+<p>
+<span class="text-emerald-400 font-mono text-ui-caption mr-2">#1</span>
+                    When an axon of cell A is near enough to excite a cell B and repeatedly or persistently takes part in firing it, some growth process or metabolic change takes place in one or both cells such that A's efficiency, as one of the cells firing B, is increased.
+                </p>
+<div class="p-lg bg-surface-container rounded-xl border border-white/5 my-lg italic text-on-surface-variant relative group overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent"></div>
+                    "Neurons that fire together, wire together." 
+                    <span class="block mt-sm font-ui-caption not-italic uppercase tracking-widest text-emerald-400/70">— Carla Shatz</span>
+</div>
+<p>
+                    Long-term potentiation (<span class="text-tertiary">LTP</span>) is considered one of the major cellular mechanisms that underlies learning and memory. In the hippocampus, LTP is characterized by a long-lasting increase in synaptic signaling.
+                </p>
+<h3 class="text-xl font-h2-editorial text-primary mb-md">Syntax Highlight Demonstration</h3>
+<div class="font-mono text-[14px] bg-surface-container-highest p-md rounded-lg border border-white/10 leading-6 shadow-inner">
+<div class="flex gap-md">
+<span class="text-outline select-none">01</span>
+<span class="text-emerald-400">### Key Mechanisms</span>
+</div>
+<div class="flex gap-md">
+<span class="text-outline select-none">02</span>
+<span class="text-on-surface">- **NMDA** Receptor activation</span>
+</div>
+<div class="flex gap-md">
+<span class="text-outline select-none">03</span>
+<span class="text-on-surface">- **AMPA** Receptor trafficking</span>
+</div>
+<div class="flex gap-md">
+<span class="text-outline select-none">04</span>
+<span class="text-secondary-fixed">[[Calcium Influx]]</span>
+</div>
+</div>
+<p>
+                    As we navigate the corridors of neuroplasticity, we find that memory is not a static recording but a dynamic reconstruction, a tapestry woven from the threads of electrochemical signaling and protein synthesis.
+                </p>
+<div class="relative w-full aspect-video rounded-3xl overflow-hidden my-xl group">
+<img class="w-full h-full object-cover grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-700" data-alt="A microscopic visualization of neural pathways in a human brain, rendered in a deep emerald and slate palette. Luminescent electrical pulses travel along axons, illuminating the dark, complex network with a soft turquoise glow. The aesthetic is clean and scientific, with a focus on biological complexity and the elegance of neural architecture in a dark, sanctuary-like environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-3_Q3xzh64WerFgPYct2FYsdlgAokT80PW9HXU_b68pmhGLSa5H-tHiUKBpuUIHDYSj1f23kdrrxLcNpghTNc7CGZKHN_2K5wWFCBLhI19Vv2Lk7W4YTKRLgT4AbJksCrYQCsLH1kQTtVWjUyj0S9g_m3DjA35z8qBkh65vsn5uIOMQWRQ7mqEULYXbs2x3gQioO-P_hvJdAZdIbuGHmjJ1VBoHjGOVSNt-yqYot82oQPEfEHC1np-K6c1s18UkNMF6ArrFISG-7x"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+<div class="absolute bottom-6 left-6 font-ui-caption text-on-surface/80 bg-surface/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                        Fig 1.1: Synaptic Density in the Hippocampus
+                    </div>
+</div>
+</article>
+</div>
+</main>
+<!-- Floating Action Button (from JSON guidance) -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-emerald-500 text-slate-950 rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(16,185,129,0.4)] hover:scale-110 active:scale-90 transition-all duration-300 z-50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+<!-- Contextual Formatting Bar (Task Focused - Bottom Bar Logic) -->
+<div class="fixed bottom-lg left-1/2 -translate-x-1/2 glass-panel border border-white/10 px-6 py-3 rounded-full flex items-center gap-lg shadow-2xl z-40">
+<button class="text-slate-400 hover:text-emerald-400 transition-colors material-symbols-outlined">format_bold</button>
+<button class="text-slate-400 hover:text-emerald-400 transition-colors material-symbols-outlined">format_italic</button>
+<button class="text-slate-400 hover:text-emerald-400 transition-colors material-symbols-outlined">link</button>
+<div class="w-px h-4 bg-white/10"></div>
+<button class="text-slate-400 hover:text-emerald-400 transition-colors material-symbols-outlined">list</button>
+<button class="text-slate-400 hover:text-emerald-400 transition-colors material-symbols-outlined">image</button>
+<button class="text-slate-400 hover:text-emerald-400 transition-colors material-symbols-outlined">code</button>
+</div>
+</body></html>

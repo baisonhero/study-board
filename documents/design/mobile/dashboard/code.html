@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sanctuary | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#93000a",
+                        "inverse-primary": "#4f6264",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "surface-container-high": "#232b2e",
+                        "on-tertiary": "#002e6a",
+                        "secondary-fixed": "#ffddb8",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-surface": "#dbe4e8",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#424848",
+                        "inverse-on-surface": "#2a3235",
+                        "surface-container-highest": "#2e3639",
+                        "surface-container-low": "#151d20",
+                        "on-error": "#690005",
+                        "surface-container": "#192124",
+                        "primary-fixed": "#d2e6e8",
+                        "on-secondary-fixed": "#2a1700",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-primary-fixed": "#0c1e20",
+                        "primary-fixed-dim": "#b6cacc",
+                        "on-background": "#dbe4e8",
+                        "outline": "#8c9292",
+                        "inverse-surface": "#dbe4e8",
+                        "surface-container-lowest": "#070f12",
+                        "surface-bright": "#323a3e",
+                        "tertiary": "#adc6ff",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "on-tertiary-container": "#4c8dff",
+                        "on-tertiary-fixed": "#001a42",
+                        "secondary-container": "#ee9800",
+                        "secondary": "#ffb95f",
+                        "on-primary-container": "#809496",
+                        "on-secondary-container": "#5b3800",
+                        "primary": "#b6cacc",
+                        "surface": "#0d1518",
+                        "background": "#0d1518",
+                        "on-primary": "#213335",
+                        "primary-container": "#1a2c2e",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#384a4c",
+                        "on-secondary": "#472a00",
+                        "on-surface-variant": "#c2c7c8",
+                        "surface-dim": "#0d1518",
+                        "tertiary-fixed": "#d8e2ff",
+                        "surface-variant": "#2e3639",
+                        "surface-tint": "#b6cacc",
+                        "tertiary-container": "#00275c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "32px",
+                        "xl": "40px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "gutter": "20px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "h2-editorial": ["Newsreader"],
+                        "body-reading": ["Newsreader"],
+                        "h1-display": ["Inter"],
+                        "ui-label": ["Inter"],
+                        "ui-main": ["Inter"],
+                        "ui-caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2-editorial": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "body-reading": ["19px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h1-display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "ui-label": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "ui-main": ["15px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "ui-caption": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(13, 21, 24, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .heat-cell {
+            aspect-ratio: 1/1;
+            border-radius: 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-ui-main">
+<!-- TopAppBar from Shared Components -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-slate-950/40 backdrop-blur-2xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-emerald-500 hover:bg-white/5 p-2 rounded-full transition-all">menu</button>
+<span class="text-xl font-medium tracking-widest text-emerald-50 dark:text-emerald-100 font-h1-display">Sanctuary</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-emerald-500 hover:bg-white/5 p-2 rounded-full transition-all">account_circle</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 md:px-32 max-w-[1440px] mx-auto space-y-10">
+<!-- Greeting Section -->
+<section class="space-y-2">
+<h1 class="font-h1-display text-h1-display text-on-background">Welcome back, Scholar</h1>
+<p class="font-body-reading text-body-reading text-on-surface-variant italic">Your mind is a garden. What will you plant today?</p>
+</section>
+<!-- Bento Grid Dashboard -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Learning Streak/Heatmap (6 columns) -->
+<div class="md:col-span-8 glass-panel rounded-3xl p-8 space-y-6">
+<div class="flex justify-between items-center">
+<h2 class="font-ui-label text-ui-label text-primary-fixed uppercase tracking-widest">Cognitive Momentum</h2>
+<span class="font-ui-caption text-ui-caption text-on-surface-variant">12 Day Streak</span>
+</div>
+<div class="grid grid-cols-13 gap-2">
+<!-- Simple Heatmap Generation Representation -->
+<div class="grid grid-cols-7 gap-2 w-full">
+<!-- Mock Heatmap Cells -->
+<div class="heat-cell bg-surface-container-highest"></div>
+<div class="heat-cell bg-primary-container/40"></div>
+<div class="heat-cell bg-primary/20"></div>
+<div class="heat-cell bg-primary/40"></div>
+<div class="heat-cell bg-primary/60"></div>
+<div class="heat-cell bg-primary/10"></div>
+<div class="heat-cell bg-surface-container-highest"></div>
+<div class="heat-cell bg-primary/30"></div>
+<div class="heat-cell bg-primary/80 shadow-[0_0_15px_rgba(182,202,204,0.3)]"></div>
+<div class="heat-cell bg-primary/40"></div>
+<div class="heat-cell bg-primary/20"></div>
+<div class="heat-cell bg-primary/50"></div>
+<div class="heat-cell bg-primary/90"></div>
+<div class="heat-cell bg-primary/10"></div>
+<!-- ... 14 cells for visualization -->
+</div>
+</div>
+<div class="flex gap-4 pt-4 border-t border-white/5">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary shadow-sm"></div>
+<span class="text-ui-caption text-on-surface-variant">Active Learning</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-surface-container-highest"></div>
+<span class="text-ui-caption text-on-surface-variant">Rest Period</span>
+</div>
+</div>
+</div>
+<!-- Daily Focus (4 columns) -->
+<div class="md:col-span-4 glass-panel rounded-3xl p-8 space-y-6">
+<h2 class="font-ui-label text-ui-label text-secondary uppercase tracking-widest">Daily Focus</h2>
+<ul class="space-y-4">
+<li class="flex items-start gap-4 group cursor-pointer">
+<div class="mt-1 w-5 h-5 rounded border border-outline flex items-center justify-center group-hover:border-secondary transition-colors">
+<span class="material-symbols-outlined text-[16px] text-secondary opacity-0 group-hover:opacity-100">check</span>
+</div>
+<span class="font-ui-main text-ui-main text-on-surface">Synthesis of Neural Networks</span>
+</li>
+<li class="flex items-start gap-4 group cursor-pointer">
+<div class="mt-1 w-5 h-5 rounded border border-outline flex items-center justify-center group-hover:border-secondary transition-colors">
+<span class="material-symbols-outlined text-[16px] text-secondary opacity-0 group-hover:opacity-100">check</span>
+</div>
+<span class="font-ui-main text-ui-main text-on-surface">Review Spaced Repetition Tags</span>
+</li>
+<li class="flex items-start gap-4 group cursor-pointer">
+<div class="mt-1 w-5 h-5 rounded border border-outline flex items-center justify-center group-hover:border-secondary transition-colors">
+<span class="material-symbols-outlined text-[16px] text-secondary opacity-0 group-hover:opacity-100">check</span>
+</div>
+<span class="font-ui-main text-ui-main text-on-surface">Draft "The Ethics of AI"</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Recent Thoughts Horizontal Scroll -->
+<section class="space-y-6">
+<div class="flex justify-between items-center">
+<h2 class="font-h2-editorial text-h2-editorial text-on-surface">Recent Thoughts</h2>
+<button class="text-ui-label text-primary-fixed hover:text-primary transition-colors flex items-center gap-1">
+                    View Archive <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="flex overflow-x-auto gap-6 pb-4 scrollbar-hide no-scrollbar -mx-6 px-6">
+<!-- Note Card 1 -->
+<div class="flex-shrink-0 w-80 glass-panel rounded-2xl p-6 space-y-4 group hover:border-primary/30 transition-all duration-500">
+<div class="flex justify-between items-start">
+<span class="px-2 py-1 bg-tertiary-container text-tertiary text-[10px] rounded font-bold uppercase tracking-tighter">Philosophy</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">more_horiz</span>
+</div>
+<h3 class="font-ui-main text-lg text-on-surface group-hover:text-primary transition-colors">The Meditations of Marcus Aurelius</h3>
+<p class="font-ui-caption text-ui-caption text-on-surface-variant line-clamp-3">Internalizing the concept of the 'Inner Citadel' and how it applies to modern digital distractions...</p>
+<div class="flex items-center gap-2 pt-2">
+<span class="material-symbols-outlined text-xs text-outline">schedule</span>
+<span class="text-[11px] text-outline font-medium">Updated 2h ago</span>
+</div>
+</div>
+<!-- Note Card 2 -->
+<div class="flex-shrink-0 w-80 glass-panel rounded-2xl p-6 space-y-4 group hover:border-primary/30 transition-all duration-500">
+<div class="flex justify-between items-start">
+<span class="px-2 py-1 bg-secondary-container/20 text-secondary text-[10px] rounded font-bold uppercase tracking-tighter">Science</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">more_horiz</span>
+</div>
+<h3 class="font-ui-main text-lg text-on-surface group-hover:text-primary transition-colors">Quantum Entanglement Basics</h3>
+<p class="font-ui-caption text-ui-caption text-on-surface-variant line-clamp-3">Exploring the EPR paradox and the non-local nature of reality through Bell's Theorem experiments...</p>
+<div class="flex items-center gap-2 pt-2">
+<span class="material-symbols-outlined text-xs text-outline">schedule</span>
+<span class="text-[11px] text-outline font-medium">Updated 5h ago</span>
+</div>
+</div>
+<!-- Note Card 3 -->
+<div class="flex-shrink-0 w-80 glass-panel rounded-2xl p-6 space-y-4 group hover:border-primary/30 transition-all duration-500">
+<div class="flex justify-between items-start">
+<span class="px-2 py-1 bg-primary-container text-primary text-[10px] rounded font-bold uppercase tracking-tighter">Design</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">more_horiz</span>
+</div>
+<h3 class="font-ui-main text-lg text-on-surface group-hover:text-primary transition-colors">Color Theory in Digital Spaces</h3>
+<p class="font-ui-caption text-ui-caption text-on-surface-variant line-clamp-3">The psychological impact of emerald vs cobalt in high-focus environments and cognitive load management...</p>
+<div class="flex items-center gap-2 pt-2">
+<span class="material-symbols-outlined text-xs text-outline">schedule</span>
+<span class="text-[11px] text-outline font-medium">Updated yesterday</span>
+</div>
+</div>
+<!-- Image Card - Visual Inspiration -->
+<div class="flex-shrink-0 w-80 rounded-2xl overflow-hidden relative group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A serene minimalist home office at dusk, featuring a dark oak desk with a glowing tablet showing complex nodes and a small succulent. The background is a large window overlooking a foggy forest, with soft blue and emerald ambient light casting gentle shadows. The mood is intellectually focused and deeply calm, emphasizing a digital sanctuary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQWTnnRfTtXPQU0bFXkSafoxq-hgEgOWLhuUnf9ZDX25iD22fxaPYfVZqPaSCH9EXBEFRWg1F17IYGMzU_GVOhwov7j90x4jIKSbhp-GFiz0PCvsQM9kjA1_bUQbIGzuA5vVZnAboqoYvYga7F48uH_10VMBu_uvTeXSjJWJjZYqnR5UpoAworUOcF7ncYSbOz_kZFKsn0KkwN5nA7MqmufMUaALPPsmX_DNknyFG9pLTFGYIKZHSRySRfFEGxVHzTHMY2rk7ZGkDT"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest block mb-1">Inspiration</span>
+<h4 class="text-on-background font-h2-editorial text-sm italic">"The silence of the forest is the music of the mind."</h4>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar from Shared Components -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-slate-900/60 backdrop-blur-2xl rounded-t-[32px] border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.4)]">
+<a class="flex flex-col items-center justify-center text-emerald-400 bg-emerald-500/10 rounded-2xl px-5 py-1 active:scale-90 duration-300 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-['Inter'] text-[11px] font-medium tracking-wide">Focus</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 opacity-70 hover:bg-white/5 transition-colors active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-['Inter'] text-[11px] font-medium tracking-wide">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 opacity-70 hover:bg-white/5 transition-colors active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-['Inter'] text-[11px] font-medium tracking-wide">Graph</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 opacity-70 hover:bg-white/5 transition-colors active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined">timeline</span>
+<span class="font-['Inter'] text-[11px] font-medium tracking-wide">Progress</span>
+</a>
+</nav>
+<!-- Floating Action Button for Dashboard -->
+<button class="fixed bottom-28 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-110 active:scale-95 z-40">
+<span class="material-symbols-outlined font-bold">add</span>
+</button>
+</body></html>

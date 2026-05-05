@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sanctuary - Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#93000a",
+                        "inverse-primary": "#4f6264",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "surface-container-high": "#232b2e",
+                        "on-tertiary": "#002e6a",
+                        "secondary-fixed": "#ffddb8",
+                        "on-surface": "#dbe4e8",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#424848",
+                        "inverse-on-surface": "#2a3235",
+                        "surface-container-highest": "#2e3639",
+                        "surface-container-low": "#151d20",
+                        "on-error": "#690005",
+                        "surface-container": "#192124",
+                        "primary-fixed": "#d2e6e8",
+                        "on-secondary-fixed": "#2a1700",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-primary-fixed": "#0c1e20",
+                        "primary-fixed-dim": "#b6cacc",
+                        "on-background": "#dbe4e8",
+                        "outline": "#8c9292",
+                        "inverse-surface": "#dbe4e8",
+                        "surface-container-lowest": "#070f12",
+                        "surface-bright": "#323a3e",
+                        "tertiary": "#adc6ff",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "on-tertiary-container": "#4c8dff",
+                        "on-tertiary-fixed": "#001a42",
+                        "secondary-container": "#ee9800",
+                        "secondary": "#ffb95f",
+                        "on-primary-container": "#809496",
+                        "on-secondary-container": "#5b3800",
+                        "primary": "#b6cacc",
+                        "surface": "#0d1518",
+                        "background": "#0d1518",
+                        "on-primary": "#213335",
+                        "primary-container": "#1a2c2e",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#384a4c",
+                        "on-secondary": "#472a00",
+                        "on-surface-variant": "#c2c7c8",
+                        "surface-dim": "#0d1518",
+                        "tertiary-fixed": "#d8e2ff",
+                        "surface-variant": "#2e3639",
+                        "surface-tint": "#b6cacc",
+                        "tertiary-container": "#00275c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "32px",
+                        "xl": "40px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "gutter": "20px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "h2-editorial": ["Newsreader"],
+                        "body-reading": ["Newsreader"],
+                        "h1-display": ["Inter"],
+                        "ui-label": ["Inter"],
+                        "ui-main": ["Inter"],
+                        "ui-caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2-editorial": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "body-reading": ["19px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h1-display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "ui-label": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "ui-main": ["15px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "ui-caption": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(13, 21, 24, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-ui-main min-h-screen">
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-slate-950/40 backdrop-blur-2xl border-b border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-emerald-500 dark:text-emerald-400 active:scale-95 transition-transform duration-200">menu</button>
+<span class="text-xl font-medium tracking-widest text-emerald-50 dark:text-emerald-100 font-h1-display">Sanctuary</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-400 hover:text-slate-100 font-ui-label" href="#">Focus</a>
+<a class="text-emerald-400 font-semibold font-ui-label" href="#">Library</a>
+<a class="text-slate-400 hover:text-slate-100 font-ui-label" href="#">Graph</a>
+</nav>
+<button class="material-symbols-outlined text-emerald-500 dark:text-emerald-400 active:scale-95 transition-transform duration-200">account_circle</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-container-padding max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<aside class="hidden lg:block lg:col-span-3 space-y-lg">
+<section class="glass-panel p-md rounded-xl border border-white/5">
+<h3 class="text-ui-label text-outline mb-md uppercase">Collections</h3>
+<nav class="space-y-sm">
+<button class="w-full flex items-center justify-between p-sm rounded-lg bg-emerald-500/10 text-emerald-300 font-medium">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">folder</span>
+<span class="text-ui-main">Personal Journals</span>
+</div>
+<span class="text-ui-caption opacity-60">12</span>
+</button>
+<button class="w-full flex items-center justify-between p-sm rounded-lg text-slate-400 hover:bg-white/5 hover:text-slate-100 transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">folder_open</span>
+<span class="text-ui-main">Architecture Studies</span>
+</div>
+<span class="text-ui-caption opacity-60">45</span>
+</button>
+<button class="w-full flex items-center justify-between p-sm rounded-lg text-slate-400 hover:bg-white/5 hover:text-slate-100 transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">folder_copy</span>
+<span class="text-ui-main">Creative Writing</span>
+</div>
+<span class="text-ui-caption opacity-60">8</span>
+</button>
+</nav>
+</section>
+<section class="glass-panel p-md rounded-xl border border-white/5">
+<h3 class="text-ui-label text-outline mb-md uppercase">Tags</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-primary-container text-primary text-ui-caption border border-primary/20">#philosophy</span>
+<span class="px-3 py-1 rounded-full bg-tertiary-container text-tertiary text-ui-caption border border-tertiary/20">#draft</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant text-ui-caption border border-white/5">#design</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant text-ui-caption border border-white/5">#research</span>
+<span class="px-3 py-1 rounded-full bg-secondary-container/20 text-secondary text-ui-caption border border-secondary/20">#urgent</span>
+</div>
+</section>
+</aside>
+<section class="col-span-1 lg:col-span-9 space-y-lg">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-emerald-400 transition-colors">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-2xl py-5 pl-12 pr-6 text-ui-main focus:ring-1 focus:ring-emerald-500/50 focus:bg-surface-container-high transition-all shadow-xl placeholder:text-outline/50" placeholder="Search through your consciousness..." type="text"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+<kbd class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-outline">⌘ K</kbd>
+</div>
+</div>
+<section>
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-h2-editorial text-h2-editorial text-on-surface">Pinned Notes</h2>
+<span class="material-symbols-outlined text-secondary cursor-pointer" data-weight="fill">push_pin</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<article class="glass-panel p-lg rounded-[24px] border border-white/5 hover:border-emerald-500/30 transition-all cursor-pointer group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-3xl rounded-full -mr-16 -mt-16"></div>
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-ui-main text-ui-main font-bold text-emerald-50 group-hover:text-emerald-400 transition-colors">The Architecture of Silence</h3>
+<span class="material-symbols-outlined text-[18px] text-secondary" data-weight="fill">star</span>
+</div>
+<p class="font-body-reading text-ui-caption text-outline-variant line-clamp-2 mb-md">Exploring the relationship between physical minimalism and mental clarity in 20th century brutalist spaces...</p>
+<div class="flex items-center gap-4 text-ui-caption text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span> 2h ago</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">sell</span> #philosophy</span>
+</div>
+</article>
+<article class="glass-panel p-lg rounded-[24px] border border-white/5 hover:border-emerald-500/30 transition-all cursor-pointer group relative overflow-hidden">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-ui-main text-ui-main font-bold text-emerald-50 group-hover:text-emerald-400 transition-colors">Digital Garden Manifesto</h3>
+<span class="material-symbols-outlined text-[18px] text-secondary" data-weight="fill">star</span>
+</div>
+<p class="font-body-reading text-ui-caption text-outline-variant line-clamp-2 mb-md">A new framework for personal knowledge management focusing on iterative growth rather than static filing...</p>
+<div class="flex items-center gap-4 text-ui-caption text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span> yesterday</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">sell</span> #workflow</span>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="flex items-center justify-between mb-md border-b border-white/5 pb-2">
+<h2 class="font-h2-editorial text-h2-editorial text-on-surface">Recent Thoughts</h2>
+<div class="flex gap-2">
+<button class="material-symbols-outlined p-2 text-outline hover:text-emerald-400 transition-colors">view_agenda</button>
+<button class="material-symbols-outlined p-2 text-emerald-400">grid_view</button>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex flex-col md:flex-row md:items-center gap-4 p-md rounded-xl hover:bg-white/5 transition-all cursor-pointer group border-l-2 border-transparent hover:border-emerald-500/50">
+<div class="md:w-48 text-ui-caption text-outline">Oct 24, 2023</div>
+<div class="flex-1">
+<h4 class="text-ui-main font-semibold text-on-surface mb-1">Morning Reflection: On Entropy</h4>
+<p class="text-ui-caption text-outline-variant truncate">How much of our daily friction is necessary versus self-imposed...</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] uppercase tracking-wider text-outline border border-white/5">Journal</span>
+<button class="material-symbols-outlined opacity-0 group-hover:opacity-100 text-outline-variant hover:text-emerald-400 transition-all">more_vert</button>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-center gap-4 p-md rounded-xl hover:bg-white/5 transition-all cursor-pointer group border-l-2 border-transparent hover:border-emerald-500/50">
+<div class="md:w-48 text-ui-caption text-outline">Oct 22, 2023</div>
+<div class="flex-1">
+<h4 class="text-ui-main font-semibold text-on-surface mb-1">UI Interaction Patterns (Draft)</h4>
+<p class="text-ui-caption text-outline-variant truncate">Research notes on fluid transitions and tactile feedback loops in mobile apps...</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] uppercase tracking-wider text-outline border border-white/5">Design</span>
+<button class="material-symbols-outlined opacity-0 group-hover:opacity-100 text-outline-variant hover:text-emerald-400 transition-all">more_vert</button>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-center gap-4 p-md rounded-xl hover:bg-white/5 transition-all cursor-pointer group border-l-2 border-transparent hover:border-emerald-500/50">
+<div class="md:w-48 text-ui-caption text-outline">Oct 19, 2023</div>
+<div class="flex-1">
+<h4 class="text-ui-main font-semibold text-on-surface mb-1">Reading List: Q4 Philosophy</h4>
+<p class="text-ui-caption text-outline-variant truncate">Compiled list of essential readings for the upcoming winter quarter...</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] uppercase tracking-wider text-outline border border-white/5">Archive</span>
+<button class="material-symbols-outlined opacity-0 group-hover:opacity-100 text-outline-variant hover:text-emerald-400 transition-all">more_vert</button>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-center gap-4 p-md rounded-xl hover:bg-white/5 transition-all cursor-pointer group border-l-2 border-transparent hover:border-emerald-500/50">
+<div class="md:w-48 text-ui-caption text-outline">Oct 15, 2023</div>
+<div class="flex-1">
+<h4 class="text-ui-main font-semibold text-on-surface mb-1">Project Chrysalis Overview</h4>
+<p class="text-ui-caption text-outline-variant truncate">Defining the core mission and value proposition for the new sanctuary initiative...</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-[10px] uppercase tracking-wider text-outline border border-white/5">Project</span>
+<button class="material-symbols-outlined opacity-0 group-hover:opacity-100 text-outline-variant hover:text-emerald-400 transition-all">more_vert</button>
+</div>
+</div>
+</div>
+</section>
+<div class="mt-xl h-64 w-full rounded-[32px] overflow-hidden relative group">
+<img class="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-1000" data-alt="A serene cinematic shot of a minimalist home library at dusk. Soft warm ambient lighting glows from recessed shelves containing leather-bound books. The room features a single high-end lounge chair in charcoal fabric and a floor-to-ceiling window overlooking a quiet misty forest. The aesthetic is sophisticated, moody, and perfectly captures a digital sanctuary feel with deep blacks and emerald green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxGjLW6xzZwQpwFqRiJOHNiS3H2BQ9OjAL_kxvOrn_dPI9Bgmcf9_LhSU0UQhs1Xd9hfRy9265N13Kd1tFPK6QDcc8djYZ9Wo8Kq3ivswzXwSRDCwKJCg4OAEY_9sMB3DxsL6_oXou1OzHb8-GNrVqG6LRYFisc1zuf355pzTjtFefCU771DezGBOzK8maPH47Z6niy1u2BEIXFTZk5oHNPTStwHOFd3W72HfkevIfsgIrCfwIk7H8Okj3zWLv5T_R8TvTdvE6CW3l"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<p class="text-emerald-400 font-ui-label tracking-widest uppercase mb-2">Curated Inspiration</p>
+<h3 class="font-h2-editorial text-h2-editorial text-emerald-50">Find your center in the chaos.</h3>
+</div>
+</div>
+</section>
+</main>
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-slate-900/60 backdrop-blur-2xl rounded-t-[32px] border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.4)] md:hidden">
+<button class="flex flex-col items-center justify-center text-slate-500 opacity-70 hover:bg-white/5 transition-colors active:scale-90 duration-300">
+<span class="material-symbols-outlined">bolt</span>
+<span class="font-ui-label text-[11px] font-medium tracking-wide">Focus</span>
+</button>
+<button class="flex flex-col items-center justify-center text-emerald-400 bg-emerald-500/10 rounded-2xl px-5 py-1 transition-colors active:scale-90 duration-300">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-ui-label text-[11px] font-medium tracking-wide">Library</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-500 opacity-70 hover:bg-white/5 transition-colors active:scale-90 duration-300">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-ui-label text-[11px] font-medium tracking-wide">Graph</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-500 opacity-70 hover:bg-white/5 transition-colors active:scale-90 duration-300">
+<span class="material-symbols-outlined">timeline</span>
+<span class="font-ui-label text-[11px] font-medium tracking-wide">Progress</span>
+</button>
+</footer>
+<button class="fixed bottom-10 right-8 w-14 h-14 bg-emerald-500 text-slate-950 rounded-2xl shadow-2xl flex items-center justify-center z-[70] active:scale-90 transition-transform md:bottom-24">
+<span class="material-symbols-outlined text-[32px]">edit</span>
+</button>
+</body></html>
