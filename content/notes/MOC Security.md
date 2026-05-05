@@ -8,9 +8,21 @@ created: 2026-04-19
 セキュリティ学習の地図。最大の伸びしろ。
 
 ## 基礎（これから学ぶ）
-- OWASP Top 10
-- 認証と認可
-- TLS/暗号化
+- [[OWASP Top 10]]
+- [[認証と認可]]
+- [[暗号の基礎]]
+
+## OWASP Top 10（2021年版）— 個別カテゴリ
+- [[A01 Broken Access Control]]
+- [[A02 Cryptographic Failures]]
+- [[A03 Injection]]
+- [[A04 Insecure Design]]
+- [[A05 Security Misconfiguration]]
+- [[A06 Vulnerable and Outdated Components]]
+- [[A07 Identification and Authentication Failures]]
+- [[A08 Software and Data Integrity Failures]]
+- [[A09 Security Logging and Monitoring Failures]]
+- [[A10 SSRF]]
 
 ## 標準・スコアリング
 - [[CVE]]

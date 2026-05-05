@@ -20,18 +20,20 @@ aliases:
 
 ## 2021年版（現行）
 
+各カテゴリの詳細・攻撃例・防御策は個別ノートに分離している。
+
 | # | 名称 | 内容 |
 |---|---|---|
-| **A01** | Broken Access Control | 認可制御の不備（権限昇格、IDOR、横移動） |
-| **A02** | Cryptographic Failures | 暗号化の失敗（旧: Sensitive Data Exposure）。TLS未使用、弱いアルゴリズム、平文保存 |
-| **A03** | Injection | SQLi、コマンドインジェクション、LDAPi、XSSもここに統合された |
-| **A04** | Insecure Design | 設計レベルの欠陥（このカテゴリは2021で新設） |
-| **A05** | Security Misconfiguration | デフォルト設定のまま、不要機能ON、エラーで内部情報漏洩 |
-| **A06** | Vulnerable and Outdated Components | 古いライブラリの利用（[[SCA]] / [[SBOM]] と直結） |
-| **A07** | Identification and Authentication Failures | 認証の不備、セッション管理の弱さ |
-| **A08** | Software and Data Integrity Failures | サプライチェーン、CI/CDの改ざん（[[サプライチェーン攻撃]]） |
-| **A09** | Security Logging and Monitoring Failures | ログ不足で侵害検知できない |
-| **A10** | Server-Side Request Forgery（SSRF） | サーバから内部リソースへ意図しないリクエスト |
+| **A01** | [[A01 Broken Access Control]] | 認可制御の不備（権限昇格、IDOR、横移動） |
+| **A02** | [[A02 Cryptographic Failures]] | 暗号化の失敗（旧: Sensitive Data Exposure）。TLS未使用、弱いアルゴリズム、平文保存 |
+| **A03** | [[A03 Injection]] | SQLi、コマンドインジェクション、LDAPi、XSSもここに統合された |
+| **A04** | [[A04 Insecure Design]] | 設計レベルの欠陥（このカテゴリは2021で新設） |
+| **A05** | [[A05 Security Misconfiguration]] | デフォルト設定のまま、不要機能ON、エラーで内部情報漏洩 |
+| **A06** | [[A06 Vulnerable and Outdated Components]] | 古いライブラリの利用（[[SCA]] / [[SBOM]] と直結） |
+| **A07** | [[A07 Identification and Authentication Failures]] | 認証の不備、セッション管理の弱さ |
+| **A08** | [[A08 Software and Data Integrity Failures]] | サプライチェーン、CI/CDの改ざん（[[サプライチェーン攻撃]]） |
+| **A09** | [[A09 Security Logging and Monitoring Failures]] | ログ不足で侵害検知できない |
+| **A10** | [[A10 SSRF]] | サーバから内部リソースへ意図しないリクエスト |
 
 ## 2017年版からの主な変化
 
@@ -90,3 +92,16 @@ OWASP Top 10 は3〜4年周期で更新される慣習があり、**2025年版**
 - [[SBOM]]
 - [[サプライチェーン攻撃]]
 - [[CWE]]
+
+### A01〜A10 個別ノート
+
+- [[A01 Broken Access Control]]
+- [[A02 Cryptographic Failures]]
+- [[A03 Injection]]
+- [[A04 Insecure Design]]
+- [[A05 Security Misconfiguration]]
+- [[A06 Vulnerable and Outdated Components]]
+- [[A07 Identification and Authentication Failures]]
+- [[A08 Software and Data Integrity Failures]]
+- [[A09 Security Logging and Monitoring Failures]]
+- [[A10 SSRF]]
