@@ -1,16 +1,14 @@
 import type { NextConfig } from "next";
-import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
-// `output: "export"` triggers a Next.js 15 dev-server bug where
-// generateStaticParams pathnames are matched literally against the
-// URL-encoded request path, so any slug containing a space or non-ASCII
-// character ("MOC Learning", "Kubernetes基礎", …) 500s under `next dev`.
-// Scope the static export to non-dev phases; the production build still
-// emits a fully static `out/` directory.
-export default function nextConfig(phase: string): NextConfig {
-  const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+// Switched away from `output: "export"` so API Routes (e.g. /api/health) can
+// run on Vercel as Serverless/Edge Functions while the rest of the site is
+// still automatically prerendered as static. This gives us:
+//   - working /api/* (needed for OpenTelemetry server-side spans)
+//   - same fast static delivery for note pages (Next.js ISR/SSG handles it)
+//   - no more `next dev` 500s on non-ASCII slugs (the bug was specific to
+//     `output: "export"` + dev server)
+export default function nextConfig(_phase: string): NextConfig {
   return {
-    ...(isDev ? {} : { output: "export" }),
     trailingSlash: true,
     images: {
       unoptimized: true,
@@ -19,6 +17,10 @@ export default function nextConfig(phase: string): NextConfig {
     // steps; skipping them here keeps the build itself snappy.
     typescript: { ignoreBuildErrors: true },
     eslint: { ignoreDuringBuilds: true },
+    // @vercel/otel needs to be loaded as a server external package so its
+    // OpenTelemetry transitive dependencies (which use Node-only APIs) aren't
+    // bundled into edge runtime chunks.
+    serverExternalPackages: ["@vercel/otel"],
     ...(process.env.NEXT_DIST_DIR ? { distDir: process.env.NEXT_DIST_DIR } : {}),
   };
 }
