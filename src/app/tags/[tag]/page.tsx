@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllTags, getNotesByTag } from "@/lib/markdown";
-import NoteList from "@/components/NoteList";
+import { stripMarkdown } from "@/lib/search";
+import NoteCard from "@/components/NoteCard";
 
 export const dynamicParams = false;
 
@@ -15,7 +16,7 @@ export async function generateMetadata({
   params: Promise<{ tag: string }>;
 }) {
   const { tag } = await params;
-  return { title: `#${decodeURIComponent(tag)} — Vault` };
+  return { title: `#${decodeURIComponent(tag)} — Sanctuary` };
 }
 
 export default async function TagPage({
@@ -29,22 +30,36 @@ export default async function TagPage({
   if (notes.length === 0) notFound();
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6 px-6 py-8 pb-28 lg:px-10 lg:pb-8">
       <div>
         <Link
           href="/tags/"
-          className="text-sm text-[var(--subtext)] hover:text-[var(--link)]"
+          className="text-ui-caption text-[var(--text-variant)] hover:text-[var(--text)]"
         >
-          ← タグ一覧
+          &larr; All Tags
         </Link>
       </div>
-      <h1 className="text-xl font-bold text-[var(--tag)]">
-        #{decoded}{" "}
-        <span className="text-sm font-normal text-[var(--subtext)]">
-          ({notes.length})
-        </span>
-      </h1>
-      <NoteList notes={notes} />
+      <div>
+        <h1 className="font-sans text-display text-[var(--primary)]">
+          #{decoded}
+        </h1>
+        <p className="mt-1 text-ui-caption text-[var(--text-variant)]">
+          {notes.length} note{notes.length !== 1 ? "s" : ""}
+        </p>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {notes.map((n) => (
+          <NoteCard
+            key={n.slug}
+            slug={n.slug}
+            title={n.title}
+            excerpt={stripMarkdown(n.body).slice(0, 120)}
+            tags={n.tags}
+            created={n.created}
+            category={n.category}
+          />
+        ))}
+      </div>
     </div>
   );
 }

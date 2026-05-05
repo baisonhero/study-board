@@ -1,16 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
+import AppShell from "@/components/AppShell";
+import { getAllNotes, getAllTags } from "@/lib/markdown";
 
 export const metadata: Metadata = {
-  title: "Vault Viewer",
-  description: "Read your Obsidian Vault on the go.",
+  title: "Sanctuary",
+  description: "Your digital sanctuary for deep work and intellectual growth.",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#1e1e2e",
+  themeColor: "#0d1518",
 };
 
 export default function RootLayout({
@@ -18,13 +19,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const allNotes = getAllNotes();
+  const navItems = allNotes.map((n) => ({
+    slug: n.slug,
+    title: n.title,
+    category: n.category,
+  }));
+  const tags = getAllTags();
+
   return (
     <html lang="ja">
-      <body className="min-h-dvh bg-[var(--bg)] text-[var(--text)] antialiased">
-        <Header />
-        <main className="mx-auto w-full max-w-3xl px-4 pb-24 pt-6">
+      <body className="min-h-dvh bg-surface text-on-surface antialiased">
+        <AppShell navItems={navItems} tags={tags}>
           {children}
-        </main>
+        </AppShell>
       </body>
     </html>
   );

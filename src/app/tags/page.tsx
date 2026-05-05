@@ -1,26 +1,26 @@
-import Link from "next/link";
 import { getAllTags } from "@/lib/markdown";
+import TagBadge from "@/components/TagBadge";
 
-export const metadata = { title: "タグ一覧 — Vault" };
+export const metadata = { title: "Tags — Sanctuary" };
 
 export default function TagsPage() {
   const tags = getAllTags();
   return (
-    <div className="space-y-4">
-      <h1 className="text-xl font-bold">タグ一覧 ({tags.length})</h1>
+    <div className="space-y-6 px-6 py-8 pb-28 lg:px-10 lg:pb-8">
+      <div>
+        <h1 className="font-sans text-display text-[var(--text)]">Tags</h1>
+        <p className="mt-1 font-serif text-reading text-[var(--text-variant)]">
+          Explore your knowledge by topic.
+        </p>
+      </div>
       {tags.length === 0 ? (
-        <p className="text-sm text-[var(--subtext)]">タグがありません。</p>
+        <p className="text-ui-caption text-[var(--text-variant)]">
+          No tags yet.
+        </p>
       ) : (
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2.5">
           {tags.map(({ tag, count }) => (
-            <Link
-              key={tag}
-              href={`/tags/${encodeURIComponent(tag)}/`}
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-elev)] px-4 text-sm text-[var(--tag)] hover:no-underline"
-            >
-              <span>#{tag}</span>
-              <span className="text-xs text-[var(--subtext)]">{count}</span>
-            </Link>
+            <TagBadge key={tag} tag={tag} count={count} size="md" />
           ))}
         </div>
       )}

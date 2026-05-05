@@ -2,75 +2,134 @@
 @tailwind components;
 @tailwind utilities;
 
-/* highlight.js GitHub Dark theme — inlined to avoid extra CSS imports */
 @import "highlight.js/styles/github-dark.css";
 
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
+/* ─── Design Tokens ─── */
 :root {
-  color-scheme: dark light;
-  --bg: #1e1e2e;
-  --bg-elev: #181825;
-  --text: #cdd6f4;
-  --subtext: #a6adc8;
-  --link: #89b4fa;
-  --tag: #a6e3a1;
-  --muted: #45475a;
-  --border: #313244;
+  color-scheme: dark;
+  --bg: #0d1518;
+  --bg-low: #151d20;
+  --bg-container: #192124;
+  --bg-high: #232b2e;
+  --bg-highest: #2e3639;
+  --bg-bright: #323a3e;
+  --text: #eef2f4;
+  --text-variant: #a8b2b6;
+  --subtext: #a8b2b6;
+  --primary: #6ee7b7;
+  --primary-dark: #1a2c2e;
+  --primary-on-container: #a0c4c7;
+  --secondary: #fbbf24;
+  --secondary-container: #ee9800;
+  --tertiary: #93b4ff;
+  --tertiary-container: #00275c;
+  --link: #93b4ff;
+  --tag: #6ee7b7;
+  --error: #ffb4ab;
+  --outline: #8c9292;
+  --outline-variant: #374148;
+  --muted: #4a5560;
+  --border: #374148;
+  --glass-bg: rgba(25, 33, 36, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-blur: 20px;
 }
 
+/* ─── Base ─── */
 html,
 body {
   background: var(--bg);
   color: var(--text);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Hiragino Sans",
-    "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
   min-height: 100dvh;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--outline-variant) transparent;
 }
 
 a {
   color: var(--link);
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 a:hover {
   text-decoration: underline;
 }
 
-/* Prose / note body */
+/* ─── Glassmorphism Utilities ─── */
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-heavy {
+    background: rgba(25, 33, 36, 0.75);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-floating {
+    background: rgba(25, 33, 36, 0.85);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 0 40px rgba(26, 44, 46, 0.15);
+  }
+}
+
+/* ─── Prose / Note Body ─── */
 .prose {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.8;
   color: var(--text);
   word-wrap: break-word;
   overflow-wrap: anywhere;
 }
+
 .prose h1,
 .prose h2,
 .prose h3,
 .prose h4,
 .prose h5,
 .prose h6 {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 700;
   margin-top: 1.6em;
   margin-bottom: 0.6em;
   line-height: 1.3;
-  scroll-margin-top: 4.5rem;
+  scroll-margin-top: 5rem;
+  color: var(--text);
 }
 .prose h1 {
   font-size: 1.75rem;
-  border-bottom: 1px solid var(--border);
   padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--outline-variant);
 }
 .prose h2 {
   font-size: 1.4rem;
-  border-bottom: 1px solid var(--border);
   padding-bottom: 0.25em;
+  border-bottom: 1px solid var(--outline-variant);
 }
 .prose h3 {
   font-size: 1.2rem;
@@ -81,6 +140,19 @@ a:hover {
 .prose p {
   margin: 0.75em 0;
 }
+
+/* Drop cap for first paragraph */
+.prose-dropcap > p:first-of-type::first-letter {
+  font-family: "Newsreader", serif;
+  float: left;
+  font-size: 3.5em;
+  line-height: 0.8;
+  padding-right: 0.08em;
+  padding-top: 0.06em;
+  font-weight: 500;
+  color: var(--primary);
+}
+
 .prose ul,
 .prose ol {
   margin: 0.75em 0;
@@ -99,32 +171,34 @@ a:hover {
   margin: 0.25em 0;
 }
 .prose blockquote {
-  border-left: 3px solid var(--link);
-  padding: 0.25em 1em;
+  border-left: 3px solid var(--tertiary);
+  padding: 0.5em 1.25em;
   margin: 1em 0;
-  color: var(--subtext);
-  background: rgba(137, 180, 250, 0.06);
+  color: var(--text-variant);
+  background: rgba(173, 198, 255, 0.04);
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
 }
 .prose hr {
   border: 0;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--outline-variant);
   margin: 2em 0;
 }
 .prose code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  background: var(--bg-elev);
+  background: var(--bg-high);
   padding: 0.15em 0.4em;
   border-radius: 4px;
-  font-size: 0.92em;
+  font-size: 0.85em;
 }
 .prose pre {
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
+  background: var(--bg-low);
+  border: 1px solid var(--outline-variant);
   padding: 1em;
-  border-radius: 8px;
+  border-radius: 0.75rem;
   overflow-x: auto;
   margin: 1em 0;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   line-height: 1.55;
 }
 .prose pre code {
@@ -140,29 +214,31 @@ a:hover {
   border-collapse: collapse;
   margin: 1em 0;
   font-size: 0.95rem;
+  font-family: "Inter", sans-serif;
 }
 .prose th,
 .prose td {
-  border: 1px solid var(--border);
+  border: 1px solid var(--outline-variant);
   padding: 0.5em 0.75em;
   text-align: left;
 }
 .prose th {
-  background: var(--bg-elev);
+  background: var(--bg-container);
   font-weight: 600;
 }
 .prose img {
   max-width: 100%;
   height: auto;
-  border-radius: 6px;
+  border-radius: 0.75rem;
 }
 
 /* Wikilinks */
 .prose a {
   color: var(--link);
-  text-decoration-color: rgba(137, 180, 250, 0.4);
+  text-decoration-color: rgba(173, 198, 255, 0.35);
   text-decoration-line: underline;
   text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease;
 }
 .prose a:hover {
   text-decoration-color: var(--link);
@@ -185,10 +261,10 @@ a:hover {
 }
 .prose .task-list-item input[type="checkbox"] {
   margin-top: 0.5em;
-  accent-color: var(--link);
+  accent-color: var(--secondary);
 }
 
-/* Touch targets — minimum 44px for interactive elements */
+/* ─── Touch targets ─── */
 .tap {
   display: inline-flex;
   align-items: center;
@@ -196,16 +272,66 @@ a:hover {
   padding: 0.5em 0.75em;
 }
 
-/* Light mode override (optional, keeps things readable on light OS setting) */
+/* ─── Transitions ─── */
+.transition-default {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Sidebar scrollbar ─── */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: var(--outline-variant);
+  border-radius: 2px;
+}
+
+/* ─── Graph ─── */
+.graph-node {
+  filter: drop-shadow(0 0 6px rgba(182, 202, 204, 0.4));
+  transition: filter 0.2s ease;
+}
+.graph-node:hover {
+  filter: drop-shadow(0 0 12px rgba(182, 202, 204, 0.7));
+  cursor: pointer;
+}
+.graph-edge {
+  stroke: var(--outline-variant);
+  stroke-width: 1;
+  opacity: 0.4;
+}
+
+/* ─── Light mode (optional) ─── */
 @media (prefers-color-scheme: light) {
   :root {
-    --bg: #f8f8f8;
-    --bg-elev: #eeeeee;
-    --text: #1f1f2e;
-    --subtext: #4c4f69;
-    --link: #1e66f5;
-    --tag: #40a02b;
-    --muted: #9ca0b0;
-    --border: #d4d4d8;
+    color-scheme: light;
+    --bg: #f8fafc;
+    --bg-low: #f1f5f9;
+    --bg-container: #e8eef2;
+    --bg-high: #dfe6eb;
+    --bg-highest: #d1d9df;
+    --bg-bright: #c8d0d6;
+    --text: #1a2c2e;
+    --text-variant: #4a5568;
+    --subtext: #4a5568;
+    --primary: #1a2c2e;
+    --primary-dark: #b6cacc;
+    --primary-on-container: #384a4c;
+    --secondary: #b37400;
+    --secondary-container: #ffecd0;
+    --tertiary: #1e40af;
+    --tertiary-container: #dbeafe;
+    --link: #1e40af;
+    --tag: #1a2c2e;
+    --error: #dc2626;
+    --outline: #94a3b8;
+    --outline-variant: #cbd5e1;
+    --muted: #94a3b8;
+    --border: #cbd5e1;
+    --glass-bg: rgba(248, 250, 252, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.06);
   }
 }
