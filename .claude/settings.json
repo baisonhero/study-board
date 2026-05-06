@@ -1,0 +1,4 @@
+{
+  "$harnessNote": "Hooks intentionally left empty. TDD discipline is enforced via AGENTS.md and the .claude/skills/* prose harness. Hook proposals (and the rationale for keeping them off for now) live in .claude/HOOKS_PROPOSAL.md. Activate one only after it has been validated against recent sessions.",
+  "hooks": {}
+}
