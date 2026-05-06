@@ -10,15 +10,15 @@
 /* ─── Design Tokens ─── */
 :root {
   color-scheme: dark;
-  --bg: #0d1518;
+  --bg: #10181c;
   --bg-low: #151d20;
   --bg-container: #192124;
   --bg-high: #232b2e;
   --bg-highest: #2e3639;
   --bg-bright: #323a3e;
-  --text: #eef2f4;
-  --text-variant: #a8b2b6;
-  --subtext: #a8b2b6;
+  --text: #f5f8fa;
+  --text-variant: #c5cdd1;
+  --subtext: #c5cdd1;
   --primary: #6ee7b7;
   --primary-dark: #1a2c2e;
   --primary-on-container: #a0c4c7;
@@ -46,6 +46,7 @@ body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
   font-size: 16px;
+  font-weight: 420;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
@@ -102,9 +103,17 @@ a:hover {
     "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.8;
+  font-weight: 450;
   color: var(--text);
   word-wrap: break-word;
   overflow-wrap: anywhere;
+}
+
+.prose p,
+.prose li,
+.prose ul,
+.prose ol {
+  color: var(--text);
 }
 
 .prose h1,
@@ -171,13 +180,17 @@ a:hover {
   margin: 0.25em 0;
 }
 .prose blockquote {
-  border-left: 3px solid var(--tertiary);
-  padding: 0.5em 1.25em;
+  border-left: 4px solid var(--tertiary);
+  padding: 0.6em 1.25em;
   margin: 1em 0;
-  color: var(--text-variant);
-  background: rgba(173, 198, 255, 0.04);
+  color: var(--text);
+  background: rgba(173, 198, 255, 0.10);
   border-radius: 0 0.5rem 0.5rem 0;
-  font-style: italic;
+  font-style: normal;
+}
+.prose blockquote em,
+.prose blockquote i {
+  color: var(--text);
 }
 .prose hr {
   border: 0;
@@ -304,34 +317,4 @@ a:hover {
   opacity: 0.4;
 }
 
-/* ─── Light mode (optional) ─── */
-@media (prefers-color-scheme: light) {
-  :root {
-    color-scheme: light;
-    --bg: #f8fafc;
-    --bg-low: #f1f5f9;
-    --bg-container: #e8eef2;
-    --bg-high: #dfe6eb;
-    --bg-highest: #d1d9df;
-    --bg-bright: #c8d0d6;
-    --text: #1a2c2e;
-    --text-variant: #4a5568;
-    --subtext: #4a5568;
-    --primary: #1a2c2e;
-    --primary-dark: #b6cacc;
-    --primary-on-container: #384a4c;
-    --secondary: #b37400;
-    --secondary-container: #ffecd0;
-    --tertiary: #1e40af;
-    --tertiary-container: #dbeafe;
-    --link: #1e40af;
-    --tag: #1a2c2e;
-    --error: #dc2626;
-    --outline: #94a3b8;
-    --outline-variant: #cbd5e1;
-    --muted: #94a3b8;
-    --border: #cbd5e1;
-    --glass-bg: rgba(248, 250, 252, 0.7);
-    --glass-border: rgba(0, 0, 0, 0.06);
-  }
-}
+/* Light mode tokens removed — Tailwind hardcodes `bg-surface` dark, so flipping CSS vars on `prefers-color-scheme: light` produced dark-on-dark text. */
