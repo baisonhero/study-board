@@ -28,6 +28,7 @@ Before your first edit:
 1. `AGENTS.md` (repo root)
 2. `.claude/skills/tdd-discipline/SKILL.md`
 3. `.claude/skills/replica-conventions/SKILL.md`
+4. `.claude/journal/README.md` plus the **most recent 3–5 entries** in `.claude/journal/` — the bug you're fixing may already have a recorded sibling. The `code_reviewer` will block if you trip a journal signal.
 
 ## Workflow
 
@@ -110,6 +111,29 @@ To the dispatcher:
 - Verification: `npm run test:lib` and `npm run typecheck` exit lines
 
 Do not commit. The dispatcher commits.
+
+### 7. Adversarial review — mandatory before commit
+
+After your report, the dispatcher must spawn `code_reviewer` against your diff. Bug fixes are reviewed too — possibly *more* strictly than features, because the absence of a regression test is exactly what `code_reviewer` is built to catch.
+
+Flow:
+
+1. You finish your report (step 6) and hand back to the dispatcher.
+2. Dispatcher spawns `code_reviewer`, which will verify your red-green stash proof was actually pasted, the regression test sits next to a real fix, and no journal signal fired.
+3. **PASS** → dispatcher proceeds to commit.
+4. **BLOCK** → dispatcher re-dispatches you with the numbered fix list. Address every item. If the reviewer demands a stronger regression assertion, write it — do not argue that yours was "good enough."
+
+If the same reviewer flag fires across two consecutive runs of yours, that is a journal-worthy event. Write the entry before retrying.
+
+### 8. Journal on failure paths
+
+Write a journal entry when:
+
+- The bug was a recurrence of one you already fixed in the past — record the recurrence with `supersedes:` pointing at the older entry, severity bumped one level.
+- The bug only surfaced because the smoke test didn't cover an obvious edge case — log the *category* of gap so future implementers add the matching tests.
+- Your red-green stash proof revealed something surprising about the codebase (e.g. the test passes both with and without the fix because of a nearby cache, or a different code path). Future agents should know.
+
+Use `.claude/journal/_template.md`. Make the `Signal for next session` line specific.
 
 ## Special cases
 

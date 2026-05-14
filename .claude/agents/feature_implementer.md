@@ -28,6 +28,7 @@ Before your first edit, read:
 1. `AGENTS.md` (repo root) — the contract.
 2. `.claude/skills/tdd-discipline/SKILL.md` — Red-Green-Refactor for this repo.
 3. `.claude/skills/replica-conventions/SKILL.md` — slug rules, color rules, OTel, sync.
+4. `.claude/journal/README.md` plus the **most recent 3–5 entries** in `.claude/journal/` — recurring mistakes you must not repeat. Pay attention to "Signal for next session" lines; the `code_reviewer` will block on these.
 
 If you skip these, you will violate one of them within ~5 minutes.
 
@@ -107,6 +108,29 @@ Report back to the dispatcher:
 - Anything you noticed that's worth a follow-up but didn't include
 
 Do **not** commit. The dispatcher decides commit timing and message.
+
+### 7. Adversarial review — mandatory before commit
+
+After your report, the dispatcher must spawn `code_reviewer` against your diff. This is not optional and you do not get to skip it by writing "looks good" yourself.
+
+Flow:
+
+1. You finish your report (step 6) and hand back to the dispatcher.
+2. Dispatcher spawns `code_reviewer`.
+3. `code_reviewer` returns **PASS** → dispatcher proceeds to commit (or to `commit_push_agent` for vault-only changes).
+4. `code_reviewer` returns **BLOCK** with a numbered fix list → dispatcher re-dispatches you with that list. Address every item; do not argue. If you genuinely disagree, escalate to the user, not to the reviewer.
+
+If you find the reviewer is repeatedly catching the same class of mistake from you (or from previous runs), write a `.claude/journal/` entry per the schema in `.claude/journal/README.md` so future runs see the signal up front. Do this **before** re-running, not after.
+
+### 8. Journal on failure paths
+
+Independent of step 7, write a journal entry when:
+
+- Your spec was ambiguous and you had to halt.
+- The verification step (`npm run test:lib` / `npm run typecheck`) surfaced a *class* of issue (an env mismatch, a stale assumption baked into the harness), not just the bug you fixed.
+- You almost violated the Iron Law and caught yourself — log the temptation so the reviewer can be sharper next time.
+
+Use the template at `.claude/journal/_template.md`. The `Signal for next session` line is the load-bearing part — make it specific and grep-able.
 
 ## Hard rules
 
