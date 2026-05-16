@@ -1,5 +1,5 @@
 ---
-tags: [inbox, learning, security, aws]
+tags: [done, learning, security, aws]
 created: 2026-05-12
 aliases:
   - Cognito to Cognito OIDC
