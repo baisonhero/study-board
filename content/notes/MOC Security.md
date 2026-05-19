@@ -29,6 +29,11 @@ created: 2026-04-19
 - [[CVSS]]
 - [[セキュリティ標準とフレームワーク]]
 
+## 認証・認可
+- [[認証と認可]]
+- [[Cognito外部認証 OIDC連携]] — Cognito を OIDC IdP として連携、コールバックURLの罠
+- [[OAuth 認証フローと Cognito クロスアプリ連携]] — Authorization Code Flow / ID Token vs Access Token / Cognito 多重連携の 5 パターン
+
 ## AWS関連（→ [[MOC AWS]] とも繋がる）
 - [[AWSセキュリティ実装]]
 - [[S3 暗号化方式と CMK 移行戦略]] — SSE-KMS (CMK) 設計判断と移行運用

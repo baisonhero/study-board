@@ -16,6 +16,7 @@ created: 2026-04-19
 - [[MOC Business]]
 
 ## 最近の学習ノート
+- 2026-05-17 [[OAuth 認証フローと Cognito クロスアプリ連携]] — Authorization Code Flow / トークン種別 / Cognito × IIC 多重連携
 - 2026-05-16 [[S3 暗号化方式と CMK 移行戦略]] — AWS × Security 横断: SSE-KMS / CMK 移行運用
 
 ## 関連リンク
