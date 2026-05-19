@@ -106,25 +106,48 @@ grant_type=authorization_code
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    participant SPA as React SPA
-    participant CG as Cognito<br/>(Hosted UI)
-    participant AG as API Gateway
-    participant LA as Lambda Authorizer
-    participant BL as Business Lambda
+  autonumber
+  actor User as ユーザー
+  participant SPA as React SPA
+  participant Cog as Cognito<br/>User Pool
+  participant APIGW as API Gateway
+  participant Auth as Lambda<br/>Authorizer
+  participant Biz as Business<br/>Lambda
 
-    SPA->>CG: ① /authorize (PKCE + state)
-    CG->>SPA: ② 302 → /callback?code=xxx
-    SPA->>CG: ③ POST /oauth2/token<br/>(code + code_verifier)
-    CG->>SPA: ④ access_token / id_token / refresh_token
-    Note over SPA: 保管:<br/>access_token はメモリ<br/>refresh_token は HttpOnly Cookie
-    SPA->>AG: ⑤ Authorization: Bearer <token>
-    AG->>LA: ⑥ Authorizer を起動
-    Note over LA: ⑦ JWT 検証<br/>(署名 / iss / exp / aud / token_use)
-    LA->>AG: ⑧ IAM ポリシー (Allow/Deny)
-    AG->>BL: ⑨ Allow なら本体 Lambda 起動
-    BL->>SPA: ⑩ レスポンス
+  Note over SPA: code_verifier生成<br/>code_challenge算出
+
+  User->>SPA: アプリ起動
+  SPA->>Cog: /authorize へリダイレクト<br/>(code_challenge付き)
+  Cog->>User: ログイン画面表示
+  User->>Cog: ユーザー名/パスワード入力
+  Cog-->>SPA: redirect で code を返す
+
+  SPA->>Cog: /oauth2/token<br/>(code + code_verifier)
+  Cog-->>SPA: access_token<br/>id_token<br/>refresh_token
+
+  Note over SPA: トークン保管<br/>(メモリ / HttpOnly Cookie)
+
+  User->>SPA: API操作
+  SPA->>APIGW: GET /api/...<br/>Authorization: Bearer access_token
+  APIGW->>Auth: Authorizer 起動<br/>(token を渡す)
+
+  Auth->>Cog: JWKS取得<br/>(初回のみ、以降キャッシュ)
+  Cog-->>Auth: 公開鍵 (JWKS)
+
+  Note over Auth: JWT検証<br/>署名 / iss / exp<br/>aud / token_use
+
+  Auth-->>APIGW: IAMポリシー (Allow / Deny)
+
+  alt Allow
+    APIGW->>Biz: リクエスト転送
+    Biz-->>APIGW: レスポンス
+    APIGW-->>SPA: 200 OK + データ
+  else Deny
+    APIGW-->>SPA: 403 Forbidden
+  end
 ```
+
+ポイント: **PKCE の code_verifier 生成は SPA 側**、**JWKS は Authorizer が初回だけ Cognito から取得して以降はキャッシュ**、**Allow / Deny は IAM ポリシー形式で返す** ところまで一連で見える。
 
 ### 「認証」がどこで起きているか
 
