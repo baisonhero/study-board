@@ -33,6 +33,7 @@ created: 2026-04-19
 - [[認証と認可]]
 - [[Cognito外部認証 OIDC連携]] — Cognito を OIDC IdP として連携、コールバックURLの罠
 - [[OAuth 認証フローと Cognito クロスアプリ連携]] — Authorization Code Flow / ID Token vs Access Token / Cognito 多重連携の 5 パターン
+- [[Cognito OAuth 実装と JWT 検証リファレンス]] — Cognito 実装の細部: access/id 両トークン JWT 検証、API Gateway Authorizer、SPA トークン保管
 
 ## AWS関連（→ [[MOC AWS]] とも繋がる）
 - [[AWSセキュリティ実装]]
