@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 interface NavItem {
   slug: string;
@@ -61,6 +62,7 @@ export default function Sidebar({
             Personal Vault
           </p>
         </div>
+        <ThemeToggle className="ml-auto" />
       </div>
 
       {/* Search link */}

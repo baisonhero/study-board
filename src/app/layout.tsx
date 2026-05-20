@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0d1518",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0d1518" },
+    { media: "(prefers-color-scheme: light)", color: "#fbfbfa" },
+  ],
 };
 
 export default function RootLayout({
@@ -30,7 +33,16 @@ export default function RootLayout({
 
   return (
     <html lang="ja">
-      <body className="min-h-dvh bg-surface text-on-surface antialiased">
+      <head>
+        {/* Apply the saved theme before first paint to avoid a flash.
+            Falls back to the OS preference when nothing is stored. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');var light=t==='light'||(!t&&window.matchMedia('(prefers-color-scheme: light)').matches);if(light){document.documentElement.classList.add('light');}}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className="min-h-dvh bg-[var(--bg)] text-[var(--text)] antialiased">
         <AppShell navItems={navItems} tags={tags}>
           {children}
         </AppShell>

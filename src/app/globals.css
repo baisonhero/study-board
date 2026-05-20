@@ -8,6 +8,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap");
 
 /* ─── Design Tokens ─── */
+/* Dark theme (default). `html.light` below overrides for light mode. */
 :root {
   color-scheme: dark;
   --bg: #10181c;
@@ -34,7 +35,43 @@
   --muted: #4a5560;
   --border: #374148;
   --glass-bg: rgba(25, 33, 36, 0.6);
+  --glass-heavy-bg: rgba(25, 33, 36, 0.75);
+  --glass-floating-bg: rgba(25, 33, 36, 0.85);
   --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-blur: 20px;
+}
+
+/* Light theme — clean paper white, accent identity preserved but darkened
+   for contrast on a light background. Activated by `html.light`. */
+html.light {
+  color-scheme: light;
+  --bg: #fbfbfa;
+  --bg-low: #f4f5f4;
+  --bg-container: #eef0ef;
+  --bg-high: #e6e9e7;
+  --bg-highest: #dde1df;
+  --bg-bright: #d3d8d5;
+  --text: #16201d;
+  --text-variant: #44504c;
+  --subtext: #55615c;
+  --primary: #0d7a56;
+  --primary-dark: #d4ece2;
+  --primary-on-container: #0d7a56;
+  --secondary: #a96c00;
+  --secondary-container: #ffd699;
+  --tertiary: #2f5cc4;
+  --tertiary-container: #d8e2ff;
+  --link: #2f5cc4;
+  --tag: #0d7a56;
+  --error: #b3261e;
+  --outline: #6c7672;
+  --outline-variant: #d3d8d5;
+  --muted: #9aa39f;
+  --border: #d3d8d5;
+  --glass-bg: rgba(251, 251, 250, 0.7);
+  --glass-heavy-bg: rgba(251, 251, 250, 0.82);
+  --glass-floating-bg: rgba(251, 251, 250, 0.9);
+  --glass-border: rgba(0, 0, 0, 0.07);
   --glass-blur: 20px;
 }
 
@@ -82,14 +119,14 @@ a:hover {
   }
 
   .glass-heavy {
-    background: rgba(25, 33, 36, 0.75);
+    background: var(--glass-heavy-bg);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border: 1px solid var(--glass-border);
   }
 
   .glass-floating {
-    background: rgba(25, 33, 36, 0.85);
+    background: var(--glass-floating-bg);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border: 1px solid var(--glass-border);
@@ -317,4 +354,39 @@ a:hover {
   opacity: 0.4;
 }
 
-/* Light mode tokens removed — Tailwind hardcodes `bg-surface` dark, so flipping CSS vars on `prefers-color-scheme: light` produced dark-on-dark text. */
+/* ─── Mermaid diagrams ─── */
+/* mermaid blocks render their own SVG — strip the code-block chrome. */
+.prose pre.mermaid {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* ─── Light mode: keep syntax-highlighted code blocks dark ─── */
+/* highlight.js uses the github-dark theme; on a light page a light <pre>
+   background would make that palette unreadable, so code blocks stay dark
+   (a common, intentional pattern — GitHub did this for years). */
+html.light .prose pre:not(.mermaid) {
+  background: #0d1117;
+  border-color: #30363d;
+}
+html.light .prose pre:not(.mermaid) code {
+  color: #c9d1d9;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 0.5rem;
+  color: var(--text-variant);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.theme-toggle:hover {
+  color: var(--text);
+  background: var(--bg-high);
+}

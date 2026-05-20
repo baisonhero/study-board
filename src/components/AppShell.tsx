@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Sidebar from "./Sidebar";
 import BottomNav from "./BottomNav";
+import ThemeToggle from "./ThemeToggle";
 
 interface NavItem {
   slug: string;
@@ -89,25 +90,28 @@ export default function AppShell({ children, navItems, tags }: Props) {
           >
             Sanctuary
           </Link>
-          <Link
-            href="/search/"
-            className="tap rounded-lg p-1 text-[var(--text-variant)] hover:text-[var(--text)] hover:no-underline"
-            aria-label="Search"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <Link
+              href="/search/"
+              className="tap rounded-lg p-1 text-[var(--text-variant)] hover:text-[var(--text)] hover:no-underline"
+              aria-label="Search"
             >
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-          </Link>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </Link>
+          </div>
         </header>
 
         {/* Page content */}
