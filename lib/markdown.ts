@@ -9,7 +9,48 @@ import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
+import { visit } from "unist-util-visit";
+import type { Element, Root } from "hast";
 import { transformWikiLinks, extractWikiLinkTargets } from "./wiki-links";
+
+/**
+ * Detect ```mermaid code blocks and convert them so that:
+ *   - rehype-highlight does not try to syntax-highlight them
+ *   - the client-side MermaidRenderer can find them via `pre.mermaid`
+ *
+ * Markdown:
+ *   ```mermaid
+ *   sequenceDiagram
+ *   ...
+ *   ```
+ * Becomes HTML:
+ *   <pre class="mermaid">sequenceDiagram\n...</pre>
+ */
+function rehypeMermaid() {
+  return (tree: Root) => {
+    visit(tree, "element", (node: Element, _index, parent) => {
+      if (node.tagName !== "code") return;
+      const classes =
+        (node.properties?.className as string[] | undefined) ?? [];
+      if (!classes.includes("language-mermaid")) return;
+      const text = node.children
+        .filter(
+          (c): c is { type: "text"; value: string } => c.type === "text"
+        )
+        .map((c) => c.value)
+        .join("");
+      if (
+        parent &&
+        parent.type === "element" &&
+        (parent as Element).tagName === "pre"
+      ) {
+        const p = parent as Element;
+        p.properties = { ...(p.properties || {}), className: ["mermaid"] };
+        p.children = [{ type: "text", value: text }];
+      }
+    });
+  };
+}
 
 export const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -210,6 +251,7 @@ export async function renderMarkdown(md: string): Promise<string> {
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
+    .use(rehypeMermaid)
     .use(rehypeSlug)
     .use(rehypeHighlight)
     .use(rehypeStringify, { allowDangerousHtml: true })

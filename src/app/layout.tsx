@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import AppShell from "@/components/AppShell";
+import MermaidRenderer from "@/components/MermaidRenderer";
 import { getAllNotes, getAllTags } from "@/lib/markdown";
 
 export const metadata: Metadata = {
@@ -33,6 +34,7 @@ export default function RootLayout({
         <AppShell navItems={navItems} tags={tags}>
           {children}
         </AppShell>
+        <MermaidRenderer />
       </body>
     </html>
   );
