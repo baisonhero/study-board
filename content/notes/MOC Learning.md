@@ -16,6 +16,7 @@ created: 2026-04-19
 - [[MOC Business]]
 
 ## 最近の学習ノート
+- 2026-05-21 [[SQL ビューの基礎と使いどころ]] — VIEW = 名前付き保存クエリ、抽象化 / 権限制御 / マテビュー
 - 2026-05-21 [[NextAuth セッションと id_token デコードの関係]] — id_token デコードはサインイン1回、以降は NextAuth 独自セッション
 - 2026-05-19 [[Cognito OAuth 実装と JWT 検証リファレンス]] — Cognito + API Gateway + Lambda Authorizer の実装メモ、SPA トークン保管
 - 2026-05-17 [[OAuth 認証フローと Cognito クロスアプリ連携]] — Authorization Code Flow / トークン種別 / Cognito × IIC 多重連携
