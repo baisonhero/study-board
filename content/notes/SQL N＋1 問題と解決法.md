@@ -1,10 +1,12 @@
 ---
+title: SQL N+1 問題と解決法
 tags: [done, learning, database]
 created: 2026-05-21
 aliases:
   - N+1問題
   - N+1 problem
   - N+1 クエリ
+  - N＋1問題
   - イーガーローディング
 ---
 
