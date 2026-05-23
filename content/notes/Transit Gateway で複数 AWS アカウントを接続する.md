@@ -280,6 +280,16 @@ NACL を変更している場合は両サブシステムで見直す。NACL は*
 - 解決された A のプライベート IP に対し、TGW 経由のルートと SG/NACL が通っていれば疎通する
 - B の VPC で「DNS 解決」「DNS ホスト名」が有効になっていることは前提（通常デフォルト有効）
 
+### 9.1 ★ クロスアカウントでも DNS は気にしなくてよい
+
+> 「エンドポイント → プライベート IP の DNS 解決は、クロスアカウントでも気にせずできる？」 → **Yes。特別な設定は一切不要。**
+
+- RDS / Aurora のエンドポイントは **AWS 管理のパブリック DNS** に登録された名前。中身（A レコード）がプライベート IP というだけ
+- パブリック DNS なので、**アカウント B から引いても、世界中どこから引いても同じプライベート IP** が返る。アカウント境界も VPC 境界も関係ない
+- よって **Route 53 プライベートホストゾーンの共有 / Route 53 Resolver ルール / DNS まわりのクロスアカウント設定は一切不要**
+- 唯一の前提は「B の VPC で DNS 解決・DNS ホスト名が有効」——これは B 自身の VPC 設定で、デフォルト有効。クロスアカウント要素ではない
+- **例外**: A が独自ドメイン（例 `db.internal.example.com`）を **Route 53 プライベートホストゾーン**で割り当てて、B にはその独自名で繋がせたい場合 → そのプライベートホストゾーンは別 VPC / 別アカウントからは解決できないので、ホストゾーンの VPC 関連付け（クロスアカウント association）か Route 53 Resolver が要る。**ネイティブの RDS エンドポイントをそのまま使う限り、この問題は発生しない**
+
 ## 10. Lambda(VPC) / ECS 側の留意点
 
 - **VPC Lambda**: VPC にアタッチした Lambda は B のサブネットに ENI を持つ。そこから TGW 経由で A へ出る。Lambda のサブネットルートテーブルに §5.2 のルートが必要
@@ -343,6 +353,113 @@ RDS Proxy が効くのはむしろ逆のケース：高並列 Lambda、スパイ
 - [ ] NACL を変更している場合、両方向 + エフェメラルポートを許可
 - [ ] B の VPC で DNS 解決・DNS ホスト名が有効
 - [ ] （任意）RDS Proxy / TLS / IAM 認証
+
+## 14. 完全構成例 — 非重複 CIDR + 全ルートテーブル + パケットの動き
+
+TGW 専用サブネットを使う前提での、具体的な数値入り構成例。
+
+### 14.1 CIDR 割り当て（非重複）
+
+**アカウント A — VPC A `10.0.0.0/16`**
+
+| サブネット | AZ | CIDR | 用途 |
+|---|---|---|---|
+| A-workload-1a | ap-northeast-1a | `10.0.0.0/20` | Aurora |
+| A-workload-1c | ap-northeast-1c | `10.0.16.0/20` | Aurora（マルチ AZ 用） |
+| A-tgw-1a | ap-northeast-1a | `10.0.255.0/28` | TGW ENI 専用 |
+| A-tgw-1c | ap-northeast-1c | `10.0.255.16/28` | TGW ENI 専用 |
+
+Aurora ライターエンドポイントの解決先 IP（例）: `10.0.5.20`
+
+**アカウント B — VPC B `10.1.0.0/16`**
+
+| サブネット | AZ | CIDR | 用途 |
+|---|---|---|---|
+| B-workload-1a | ap-northeast-1a | `10.1.0.0/20` | Lambda / ECS |
+| B-workload-1c | ap-northeast-1c | `10.1.16.0/20` | Lambda / ECS |
+| B-tgw-1a | ap-northeast-1a | `10.1.255.0/28` | TGW ENI 専用 |
+| B-tgw-1c | ap-northeast-1c | `10.1.255.16/28` | TGW ENI 専用 |
+
+Lambda ENI の IP（例）: `10.1.2.30`
+
+**非重複の確認**: VPC A `10.0.0.0/16` と VPC B `10.1.0.0/16` は重複なし ✓（第 2 オクテットが `0` と `1` で分離）
+
+### 14.2 各ルートテーブルの記載例
+
+**VPC A — ワークロード用 RT（`rtb-A-workload`、A-workload-1a / 1c に関連付け）**
+
+| 送信先 | ターゲット |
+|---|---|
+| `10.0.0.0/16` | local |
+| `10.1.0.0/16` | `tgw-0abc123...`（B 宛ては TGW へ） |
+
+**VPC A — TGW 専用サブネット用 RT（`rtb-A-tgw`、A-tgw-1a / 1c に関連付け）**
+
+| 送信先 | ターゲット |
+|---|---|
+| `10.0.0.0/16` | local |
+
+→ TGW 専用サブネットは **local だけでよい**。ここから能動的にクロス VPC 通信を出すリソースは無く、TGW ENI が置いてあるだけ。受信トラフィックは VPC A の local ルートで Aurora サブネットへ配送される。
+
+**VPC B — ワークロード用 RT（`rtb-B-workload`、B-workload-1a / 1c に関連付け）**
+
+| 送信先 | ターゲット |
+|---|---|
+| `10.1.0.0/16` | local |
+| `10.0.0.0/16` | `tgw-0abc123...`（A 宛ては TGW へ） |
+
+（Lambda が外部 API も叩くなら `0.0.0.0/0 → NAT GW` も別途。本題の対象外）
+
+**VPC B — TGW 専用サブネット用 RT（`rtb-B-tgw`、B-tgw-1a / 1c に関連付け）**
+
+| 送信先 | ターゲット |
+|---|---|
+| `10.1.0.0/16` | local |
+
+**TGW ルートテーブル（1 つ。両アタッチメントを association、propagation 有効なら自動）**
+
+| 送信先 | ターゲット |
+|---|---|
+| `10.0.0.0/16` | VPC A アタッチメント |
+| `10.1.0.0/16` | VPC B アタッチメント |
+
+**A の Aurora セキュリティグループ（インバウンド）**
+
+| Type | Port | Source |
+|---|---|---|
+| MySQL/Aurora | 3306 | `10.1.0.0/18`（B のワークロード連続ブロック、§7.3 推奨） |
+
+### 14.3 パケットの動き（mermaid）
+
+```mermaid
+flowchart TB
+  subgraph B["アカウント B / VPC B 10.1.0.0/16"]
+    LMB["Lambda ENI 10.1.2.30<br/>(B-workload-1a 10.1.0.0/20)"]
+    BTGW["TGW ENI<br/>(B-tgw-1a 10.1.255.0/28)"]
+  end
+  subgraph TGWBOX["Transit Gateway"]
+    TGWRT["TGW ルートテーブル<br/>10.0.0.0/16 → VPC A 添付<br/>10.1.0.0/16 → VPC B 添付"]
+  end
+  subgraph A["アカウント A / VPC A 10.0.0.0/16"]
+    ATGW["TGW ENI<br/>(A-tgw-1a 10.0.255.0/28)"]
+    AUR[("Aurora 10.0.5.20<br/>(A-workload-1a 10.0.0.0/20)")]
+  end
+
+  LMB -->|"① 宛先 10.0.5.20<br/>rtb-B-workload: 10.0.0.0/16 → TGW"| BTGW
+  BTGW -->|"②"| TGWRT
+  TGWRT -->|"③ 10.0.0.0/16 → VPC A 添付"| ATGW
+  ATGW -->|"④ VPC A local: 10.0.0.0/16 → local"| AUR
+  AUR -.->|"⑤ 戻り 宛先 10.1.2.30<br/>rtb-A-workload: 10.1.0.0/16 → TGW"| ATGW
+  ATGW -.->|"⑥"| TGWRT
+  TGWRT -.->|"⑦ 10.1.0.0/16 → VPC B 添付"| BTGW
+  BTGW -.->|"⑧ VPC B local"| LMB
+```
+
+実線 = 往路（B Lambda → A Aurora）、破線 = 復路（A Aurora → B Lambda）。
+
+- 往路: Lambda が宛先 `10.0.5.20` を見て `rtb-B-workload` を引く → `10.0.0.0/16 → TGW` → TGW → `10.0.0.0/16 → VPC A 添付` → VPC A の local で Aurora へ
+- 復路: Aurora が宛先 `10.1.2.30` を見て `rtb-A-workload` を引く → `10.1.0.0/16 → TGW` → TGW → `10.1.0.0/16 → VPC B 添付` → VPC B の local で Lambda へ
+- TGW 専用サブネット（`*-tgw-*`）は TGW ENI を収容するだけ。`rtb-*-tgw` は local のみで、往復ルーティングの主役はあくまで `rtb-*-workload` と TGW RT
 
 ## 関連MOC
 
