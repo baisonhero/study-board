@@ -38,6 +38,7 @@ aliases:
 - **AWS Application Signals** — OTel をラップした AWS の APM ボード。Operations 画面でエンドポイント別 p99 を並べて見れる
   - [[ECS と Lambda の観測性設計]] — 採択メモ（パターン比較・実装手順・コスト）
 - [[サイドカーパターン]] — CW agent / OTel Collector を ECS タスク内でアプリ隣に置く設計の基礎
+- [[DAU WAU MAU を AWS で計測する]] — ユーザー指標（CloudWatch RUM 匿名モード等）。サービス指標と別軸
 
 ## SLO / SLI
 

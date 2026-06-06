@@ -16,6 +16,7 @@ created: 2026-04-19
 - [[MOC Business]]
 
 ## 最近の学習ノート
+- 2026-06-06 [[DAU WAU MAU を AWS で計測する]] — RUM 匿名モードで PII を持たずに unique ユーザー数を取る5つの選択肢
 - 2026-06-06 [[サイドカーパターン]] — 補助コンテナで横断機能を切り出す。CW agent / OTel Collector / Envoy の文脈
 - 2026-06-06 [[ECS と Lambda の観測性設計]] — 3パターン比較 → Application Signals 採択（ECS Next.js + Lambda）
 - 2026-05-26 [[PrivateLink で別アカウントの Aurora に接続する]] — TGW との比較／NLB＋RDS Proxy 経由で公開／各アカウント実施事項
