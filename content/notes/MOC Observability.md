@@ -35,6 +35,8 @@ aliases:
 - **Grafana Cloud** — 無料枠あり、Loki / Tempo / Mimir / Pyroscope 統合
 - **Datadog / New Relic** — 商用、機能リッチだがコスト要注意
 - **AWS X-Ray / CloudWatch** — AWS固有、OTel→ADOT で統合可能（[[MOC AWS]]）
+- **AWS Application Signals** — OTel をラップした AWS の APM ボード。Operations 画面でエンドポイント別 p99 を並べて見れる
+  - [[ECS と Lambda の観測性設計]] — 採択メモ（パターン比較・実装手順・コスト）
 
 ## SLO / SLI
 

@@ -16,6 +16,7 @@ created: 2026-04-19
 - [[MOC Business]]
 
 ## 最近の学習ノート
+- 2026-06-06 [[ECS と Lambda の観測性設計]] — 3パターン比較 → Application Signals 採択（ECS Next.js + Lambda）
 - 2026-05-26 [[PrivateLink で別アカウントの Aurora に接続する]] — TGW との比較／NLB＋RDS Proxy 経由で公開／各アカウント実施事項
 - 2026-05-23 [[TGW クロスアカウント接続 まとめ]] — TGW ノートの早見版。誰が何を設定するか / C が接続性を制御する図解
 - 2026-05-21 [[Transit Gateway で複数 AWS アカウントを接続する]] — TGW クロスアカウント、B の Lambda/ECS → A の Aurora、CIDR 重複の罠
