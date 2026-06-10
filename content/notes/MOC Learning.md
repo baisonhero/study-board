@@ -16,6 +16,7 @@ created: 2026-04-19
 - [[MOC Business]]
 
 ## 最近の学習ノート
+- 2026-06-07 [[AWS で Claude を利用する 3 つの選択肢]] — Bedrock / Claude Platform on AWS / Claude Enterprise の違い、1st/3rd party 視点、Marketplace の役割
 - 2026-06-07 [[サプライチェーン攻撃]] — 定義／類型／2024-2026 の実事例（XZ・Polyfill・CrowdStrike・Vercel OAuth・npm 連発攻撃）／他攻撃との違い
 - 2026-06-06 [[DAU WAU MAU を AWS で計測する]] — RUM 匿名モードで PII を持たずに unique ユーザー数を取る5つの選択肢
 - 2026-06-06 [[サイドカーパターン]] — 補助コンテナで横断機能を切り出す。CW agent / OTel Collector / Envoy の文脈
