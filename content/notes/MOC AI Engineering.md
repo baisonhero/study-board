@@ -55,6 +55,7 @@ aliases:
 - [[LLMアプリケーションセキュリティ]]
 - [[Claude Life OS 設計書]] — Claude を中心に据えた個人OSの設計
 - [[AWS で Claude を利用する 3 つの選択肢]] — Bedrock / Claude Platform on AWS / Claude Enterprise の違い、1st/3rd party、Marketplace の役割
+- [[Claude Managed Agents]] — Anthropic ホストの meta-harness。Brain/Hands/Session の3分離で長時間タスクに強い
 
 ## 学習の進め方
 
