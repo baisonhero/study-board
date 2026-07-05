@@ -16,6 +16,7 @@ created: 2026-04-19
 - [[MOC Business]]
 
 ## 最近の学習ノート
+- 2026-07-01 [[Delta 形式と Parquet の違い]] — テーブルフォーマット vs ファイル形式、Delta/Iceberg/Hudi、S3 Tables は Iceberg 採用
 - 2026-07-01 [[AWS と GCP のクロスクラウド連携]] — STS ⇔ WIF で長期キー無しの双方向 ID フェデレーション。値の受け渡し（aud はあなた発、sub は相手発）
 - 2026-06-07 [[Claude Managed Agents]] — Anthropic ホストの meta-harness。Brain/Hands/Session 3分離、長時間タスク向きの裏方インフラ
 - 2026-06-07 [[AWS で Claude を利用する 3 つの選択肢]] — Bedrock / Claude Platform on AWS / Claude Enterprise の違い、1st/3rd party 視点、Marketplace の役割
